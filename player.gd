@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 enum Order {
+	MOVE_NONE,
 	MOVE_LEFT,
 	MOVE_RIGHT
 }
@@ -37,29 +38,54 @@ var movement_direction
 
 func _ready():
 	set_physics_process(true)
+	set_process_unhandled_input(true)
 	connect("input_event", self, "_input_event")
 	Game.connect("on_player_selected", self, "_on_player_selected")
+	arrow.visible = false
 
 func _on_player_selected(p):
 	if p == self: return
 	else: _on_deselect()
 
-func _on_player_given_order(o):
-	if is_selected:
+func _give_order(o):
 		match o:
+			MOVE_NONE:
+				movement_direction = null
+				arrow.visible = false
+				scale.x = 1
 			MOVE_LEFT:
 				movement_direction = Order.MOVE_LEFT
 				arrow.visible = true
-				rotation_degrees = 180
+				scale.x = 1
 			MOVE_RIGHT:
 				movement_direction = Order.MOVE_RIGHT
 				arrow.visible = true
-				rotation_degrees = 0
+				scale.x = -1
+
+func _input(event):
+	if is_selected:
+		if event is InputEventMouseButton:
+			if event.is_action_pressed("mouse_left"):
+				_on_deselect()
+			elif event.is_action_pressed("mouse_right"):
+				var delta = event.global_position - global_position
+				if delta.length() < 32:
+					_give_order(Order.MOVE_NONE)
+				else:
+					if orientation == Orientation.LEFT or orientation == Orientation.RIGHT:
+						if delta.y > 0:
+							_give_order(Order.MOVE_LEFT)
+						elif delta.y < 0:
+							_give_order(Order.MOVE_RIGHT)
+					elif orientation == Orientation.UP or orientation == Orientation.DOWN:
+						if delta.x > 0:
+							_give_order(Order.MOVE_LEFT)
+						elif delta.x < 0:
+							_give_order(Order.MOVE_RIGHT)
 
 func _input_event(viewport, ev, shape_idx):
 	if ev is InputEventMouseButton:
-		_on_select()
-		if ev.is_action_pressed("ui_left"):
+		if ev.is_action_pressed("mouse_left"):
 			_on_select()
 
 func _physics_process(delta):
