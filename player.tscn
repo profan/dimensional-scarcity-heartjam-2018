@@ -3,7 +3,7 @@
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://art/player.png" type="Texture" id=2]
 [ext_resource path="res://player_orientation.gd" type="Script" id=3]
-[ext_resource path="res://art/arrow_middle.png" type="Texture" id=4]
+[ext_resource path="res://art/selector.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -33,19 +33,8 @@ region_rect = Rect2( 1, 1, 32, 32 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
-[node name="arrow" type="Sprite" parent="." index="2"]
+[node name="selector" type="Sprite" parent="." index="2"]
 
-position = Vector2( 32, 0 )
 texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="tween" type="Tween" parent="." index="3"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
 
 

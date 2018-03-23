@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrow_middle.png-1543b80680c7248ed7bfaa215add20e9.stex"
+path="res://.import/selector.png-7635b0cb9cb6f0f4f91116053e4ab113.stex"
 
 [deps]
 
-source_file="res://art/arrow_middle.png"
-source_md5="c5924768b253c1e05fc8c29b4b53eaab"
+source_file="res://art/selector.png"
+source_md5="acbda6c4fafb70d20384a22ed7497987"
 
-dest_files=[ "res://.import/arrow_middle.png-1543b80680c7248ed7bfaa215add20e9.stex" ]
-dest_md5="0ca6b18b83c76f4045fda0d4494b5883"
+dest_files=[ "res://.import/selector.png-7635b0cb9cb6f0f4f91116053e4ab113.stex" ]
+dest_md5="3a503a4c9a1e8724ac47edadf9d9ed2a"
 
 [params]
 
