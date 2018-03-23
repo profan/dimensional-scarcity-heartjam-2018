@@ -32,6 +32,7 @@ func _orientation_to_upvec(o):
 onready var sprite = get_node("sprite")
 onready var coll = get_node("collision")
 onready var arrow = get_node("arrow")
+onready var tween = get_node("tween")
 
 var is_selected = false
 var movement_direction
@@ -41,6 +42,8 @@ func _ready():
 	set_process_unhandled_input(true)
 	connect("input_event", self, "_input_event")
 	Game.connect("on_player_selected", self, "_on_player_selected")
+	tween.connect("tween_completed", self, "_on_arrow_tween_done")
+	# arrow.modulate.a = 0
 	arrow.visible = false
 
 func _on_player_selected(p):
@@ -51,16 +54,32 @@ func _give_order(o):
 		match o:
 			MOVE_NONE:
 				movement_direction = null
-				arrow.visible = false
+				_hide_arrow()
 				scale.x = 1
 			MOVE_LEFT:
 				movement_direction = Order.MOVE_LEFT
-				arrow.visible = true
+				_show_arrow()
 				scale.x = 1
 			MOVE_RIGHT:
 				movement_direction = Order.MOVE_RIGHT
-				arrow.visible = true
+				_show_arrow()
 				scale.x = -1
+
+var arrow_tween_time = 0.25 # seconds
+
+func _on_arrow_tween_done(object, key):
+	if arrow.modulate.a == 0:
+		arrow.visible = false
+
+func _show_arrow():
+	arrow.visible = true
+	# tween.interpolate_property(arrow, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), arrow_tween_time, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	# tween.start()
+
+func _hide_arrow():
+	arrow.visible = false
+	# tween.interpolate_property(arrow, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), arrow_tween_time, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	# tween.start()
 
 func _input(event):
 	if is_selected:

@@ -21,7 +21,6 @@ orientation = 0
 [node name="player" parent="platforms/platform1" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( -0.5, -15 )
-_sections_unfolded = [ "Pickable", "Transform" ]
 orientation = 0
 
 [node name="platform2" parent="platforms" index="1" instance=ExtResource( 2 )]
@@ -35,7 +34,6 @@ orientation = 3
 [node name="player2" parent="platforms/platform2" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( -0.0113373, -14.8973 )
-_sections_unfolded = [ "Pickable", "Transform" ]
 orientation = 3
 
 
