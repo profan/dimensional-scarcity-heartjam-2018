@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tiles.png-4bebe0e5cdfc7faf322603713a4a3f81.stex"
+path="res://.import/arrow_middle.png-1543b80680c7248ed7bfaa215add20e9.stex"
 
 [deps]
 
-source_file="res://art/tiles.png"
-source_md5="16b9ebc1126d66277095ad9c289100b7"
+source_file="res://art/arrow_middle.png"
+source_md5="a02def7b9c9e49e76abe8b9627e96022"
 
-dest_files=[ "res://.import/tiles.png-4bebe0e5cdfc7faf322603713a4a3f81.stex" ]
-dest_md5="a8c30929358a6073708d2106a4640733"
+dest_files=[ "res://.import/arrow_middle.png-1543b80680c7248ed7bfaa215add20e9.stex" ]
+dest_md5="df8c7ee341275b3cc67c8d5cd2397ff8"
 
 [params]
 

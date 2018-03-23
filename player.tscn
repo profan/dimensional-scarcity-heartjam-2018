@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://art/player.png" type="Texture" id=2]
 [ext_resource path="res://player_orientation.gd" type="Script" id=3]
+[ext_resource path="res://art/arrow_middle.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -11,11 +12,12 @@ extents = Vector2( 9, 14 )
 
 [node name="player" type="KinematicBody2D"]
 
-input_pickable = false
+input_pickable = true
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pickable" ]
 orientation = null
 
 [node name="collision" type="CollisionShape2D" parent="." index="0"]
@@ -26,6 +28,15 @@ shape = SubResource( 1 )
 [node name="sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 2 )
+hframes = 2
+region_rect = Rect2( 1, 1, 32, 32 )
 script = ExtResource( 3 )
+_sections_unfolded = [ "Animation", "Offset", "Region" ]
+
+[node name="arrow" type="Sprite" parent="." index="2"]
+
+position = Vector2( 32, 0 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 

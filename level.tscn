@@ -1,41 +1,41 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://level.gd" type="Script" id=1]
-[ext_resource path="res://player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://platform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
 
 [node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="player" parent="." index="0" instance=ExtResource( 2 )]
+[node name="platforms" type="Node2D" parent="." index="0"]
 
-position = Vector2( 368, 322 )
+[node name="platform1" parent="platforms" index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 447, 395 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
 orientation = 0
 
-[node name="player2" parent="." index="1" instance=ExtResource( 2 )]
+[node name="player" parent="platforms/platform1" index="4" instance=ExtResource( 3 )]
 
-position = Vector2( 97.9067, 96.8274 )
+position = Vector2( -0.5, -15 )
+_sections_unfolded = [ "Pickable", "Transform" ]
+orientation = 0
+
+[node name="platform2" parent="platforms" index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 66, 139 )
+rotation = 1.5708
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
 orientation = 3
 
-[node name="platforms" type="Node2D" parent="." index="2"]
+[node name="player2" parent="platforms/platform2" index="4" instance=ExtResource( 3 )]
 
-[node name="platform1" parent="platforms" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( 275, 354 )
-scale = Vector2( 2, 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="platform2" parent="platforms" index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 66, 2.00002 )
-rotation = 1.5708
-scale = Vector2( 2, 2 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( -0.0113373, -14.8973 )
+_sections_unfolded = [ "Pickable", "Transform" ]
+orientation = 3
 
 
