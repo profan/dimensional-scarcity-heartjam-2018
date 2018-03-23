@@ -7,6 +7,7 @@ func _ready():
 	else:
 		set_process(false)
 
+# HACKITY HOO
 enum Orientation {
 	UP,
 	DOWN,
