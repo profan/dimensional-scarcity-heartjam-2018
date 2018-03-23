@@ -15,9 +15,25 @@ position = Vector2( 368, 322 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="platform" parent="." index="1" instance=ExtResource( 3 )]
+[node name="player2" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 97.9067, 96.8274 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="platforms" type="Node2D" parent="." index="2"]
+
+[node name="platform1" parent="platforms" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 275, 354 )
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="platform2" parent="platforms" index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 66, 2.00002 )
+rotation = 1.5708
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
 
