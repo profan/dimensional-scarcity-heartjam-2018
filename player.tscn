@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://art/player.png" type="Texture" id=2]
+[ext_resource path="res://player_orientation.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -15,6 +16,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+orientation = null
 
 [node name="collision" type="CollisionShape2D" parent="." index="0"]
 
@@ -24,5 +26,6 @@ shape = SubResource( 1 )
 [node name="sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 2 )
+script = ExtResource( 3 )
 
 
