@@ -53,6 +53,10 @@ var map
 
 signal player_finished_move(p)
 
+# debug
+var debug_pos_above
+var debug_pos
+
 func _ready():
 	
 	set_physics_process(true)
@@ -163,6 +167,9 @@ func _give_order(o):
 					var right_pos = position + Vector2(64, 64)
 					var g_above_pos = to_global(right_above_pos)
 					var g_pos = to_global(right_pos)
+					debug_pos_above = g_above_pos
+					debug_pos = g_pos
+					update()
 					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
 						movement_direction = Order.MOVE_LEFT
@@ -175,15 +182,25 @@ func _give_order(o):
 					scale.x = -1
 				else:
 					print("LEFTO?")
-					var left_above_pos = position + Vector2(-64, 0)
-					var left_pos = position + Vector2(-64, -64)
+					var left_above_pos = position + Vector2(64, 0)
+					var left_pos = position + Vector2(64, 64)
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
+					debug_pos_above = g_above_pos
+					debug_pos = g_pos
+					update()
 					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
 						scale.x = -1
+
+func _draw():
+	if debug_pos_above and debug_pos:
+		var inv = get_global_transform().inverse()
+		draw_set_transform(inv.get_origin(), inv.get_rotation(), inv.get_scale())
+		draw_rect(Rect2(debug_pos_above.x, debug_pos_above.y, 32, 32), ColorN("fuchsia"))
+		draw_rect(Rect2(debug_pos.x, debug_pos.y, 32, 32), ColorN("green"))
 
 func _input(event):
 	if is_selected and not tween.is_active():
