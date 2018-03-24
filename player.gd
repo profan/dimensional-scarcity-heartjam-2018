@@ -38,6 +38,7 @@ onready var sprite = get_node("sprite")
 onready var selector = get_node("selector")
 onready var coll = get_node("collision")
 onready var tween = get_node("tween")
+onready var timer = get_node("timer")
 
 # what side am i on currently
 var current_side
@@ -62,7 +63,9 @@ func _ready():
 	
 	# connect to turn stuff
 	Game.connect("on_level_step_start", self, "_on_end_turn_start")
+	Game.connect("on_level_step_end", self, "_on_end_turn_squish")
 	tween.connect("tween_completed", self, "_on_tween_done")
+	timer.connect("timeout", self, "_on_end_timer_done")
 
 func rotation_delta():
 	match movement_direction:
@@ -81,14 +84,23 @@ func _on_tween_done(obj, key):
 	
 	emit_signal("player_finished_move", self, Game.turn_number)
 	movement_direction = Order.MOVE_NONE
-	sprite.frame = 0
 	tween.stop_all()
-	
+
+func _on_end_turn_squish():
+	if Game.turn_rotation != 0:
+		sprite.frame = 2
+		timer.wait_time = 1
+		timer.start()
+
+func _on_end_timer_done():
+	sprite.frame = 0
+	timer.stop()
 
 func _on_end_turn_start():
 	if movement_direction != Order.MOVE_NONE:
 		var move_delta = _order_to_vec(movement_direction) * 32 # HACK FIXME
 		tween.interpolate_property(self, "position", position, position + move_delta, MOVE_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		sprite.frame = 0
 		tween.start()
 
 func _on_player_selected(p):

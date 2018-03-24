@@ -13,6 +13,7 @@ signal on_player_given_order(o)
 var turn_number
 var turn_rotation
 var players = {}
+var platforms = {}
 
 func _ready():
 	pass
@@ -21,6 +22,10 @@ func _ready():
 func register_player(p):
 	players[p.name] = p
 	p.connect("player_finished_move", self, "_on_player_finished_move")
+
+func register_platform(p):
+	platforms[p.name] = p
+	# p.connect("platform_finished_move", self, "_on_platform_finished_move")
 
 # game loop shit
 
@@ -42,6 +47,9 @@ func _on_player_finished_move(p, tn):
 	turn_rotation += rotation_delta * 90
 	call_deferred("_end_turn_if_done", tn)
 
+func _on_platform_finished_move(p, tn):
+	platforms[p.name] = true
+
 func select_player(p):
 	emit_signal("on_player_selected", p)
 
@@ -49,6 +57,7 @@ func start_level():
 	turn_number = 0
 	turn_rotation = 0
 	players = {}
+	platforms = {}
 
 func reset_level():
 	emit_signal("on_level_reset")

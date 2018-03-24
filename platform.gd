@@ -39,8 +39,10 @@ func _degrees_to_orientation(d):
 func _ready():
 	if not Engine.editor_hint:
 		
-		get_node("/root/Game").connect("on_level_step_end", self, "_on_level_end_turn")
+		var g = get_node("/root/Game")
+		g.connect("on_level_step_end", self, "_on_level_end_turn")
 		tween.connect("tween_completed", self, "_on_platform_rotation_end")
+		g.register_platform(self)
 		
 		left_area.connect("body_entered", self, "_on_body_enter_left")
 		left_area.connect("body_exited", self, "_on_body_exit_left")
