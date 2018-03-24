@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 tool
 
 enum Orientation {
@@ -11,6 +11,9 @@ enum Orientation {
 export (Orientation) var orientation = Orientation.UP;
 
 onready var tween = get_node("tween")
+onready var coll = get_node("main_coll")
+onready var left_area = get_node("left_area")
+onready var right_area = get_node("right_area")
 
 var ROTATION_TIME = 1 # seconds
 var rotating = false
@@ -23,20 +26,40 @@ func _orientation_to_degrees(o):
 		RIGHT: return 90
 
 func _degrees_to_orientation(d):
-	print(d)
-	if round(d) == 0 or round(d) == 360:
+	var f = round(d)
+	if f== 0 or f == 360:
 		return UP
-	elif round(d) == 180 or round(d) == -180:
+	elif f == 180 or f == -180:
 		return DOWN
-	elif round(d) == -90 or round(d) == 270:
+	elif f == -90 or f == 270:
 		return LEFT
-	elif round(d) == 90 or round(d) == -270:
+	elif f == 90 or f == -270:
 		return RIGHT
 
 func _ready():
 	if not Engine.editor_hint:
+		
 		get_node("/root/Game").connect("on_level_step_end", self, "_on_level_end_turn")
 		tween.connect("tween_completed", self, "_on_platform_rotation_end")
+		
+		left_area.connect("body_entered", self, "_on_body_enter_left")
+		left_area.connect("body_exited", self, "_on_body_exit_left")
+		right_area.connect("body_entered", self, "_on_body_enter_right")
+		right_area.connect("body_exited", self, "_on_body_exit_right")
+
+func _on_body_enter_left(b):
+	b.current_side = "left"
+	print("ENTERO LEFT")
+
+func _on_body_exit_left(b):
+	print("EXIT LEFT")
+
+func _on_body_enter_right(b):
+	b.current_side = "right"
+	print("ENTERO RIGHT")
+
+func _on_body_exit_right(b):
+	print("EXIT RIGHT")
 
 func _on_platform_rotation_end(obj, key):
 	orientation = _degrees_to_orientation(rotation_degrees)

@@ -39,6 +39,9 @@ onready var selector = get_node("selector")
 onready var coll = get_node("collision")
 onready var tween = get_node("tween")
 
+# what side am i on currently
+var current_side
+
 var is_selected = false
 var movement_direction = Order.MOVE_NONE
 
@@ -67,10 +70,19 @@ func rotation_delta():
 		MOVE_NONE: return 0
 
 func _on_tween_done(obj, key):
+	
+	if current_side == "left" and movement_direction == Order.MOVE_LEFT:
+		movement_direction = Order.MOVE_NONE
+		current_side = null
+	elif current_side == "right" and movement_direction == Order.MOVE_RIGHT:
+		movement_direction = Order.MOVE_NONE
+		current_side = null
+	
 	emit_signal("player_finished_move", self, Game.turn_number)
 	movement_direction = Order.MOVE_NONE
 	sprite.frame = 0
 	tween.stop_all()
+	
 
 func _on_end_turn_start():
 	if movement_direction != Order.MOVE_NONE:
