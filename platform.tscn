@@ -26,7 +26,6 @@ script = ExtResource( 1 )
 
 [node name="main_coll" type="CollisionShape2D" parent="." index="0"]
 
-position = Vector2( 0, 16 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
@@ -42,13 +41,13 @@ audio_bus_name = "Master"
 
 [node name="left_coll" type="CollisionShape2D" parent="left_area" index="0"]
 
-position = Vector2( -32, -16 )
+position = Vector2( -32, -32 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="left_block" type="Sprite" parent="." index="2"]
 
-position = Vector2( -48, 0 )
+position = Vector2( -48, -16 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
@@ -57,7 +56,7 @@ _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="mid_block" type="Sprite" parent="." index="3"]
 
-position = Vector2( -16, 0 )
+position = Vector2( -16, -16 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
@@ -73,16 +72,17 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
 
 [node name="right_coll" type="CollisionShape2D" parent="right_area" index="0"]
 
-position = Vector2( 32, -16 )
+position = Vector2( 32, -32 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="right_block" type="Sprite" parent="." index="5"]
 
-position = Vector2( 16, 0 )
+position = Vector2( 16, -16 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
