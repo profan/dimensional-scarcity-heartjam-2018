@@ -90,6 +90,18 @@ func _on_tween_done(obj, key):
 	elif last_side == "right" and movement_direction == Order.MOVE_RIGHT:
 		movement_direction = Order.MOVE_NONE
 		last_side = null
+		
+	# moving off platform
+	elif last_side == "right" and movement_direction == Order.MOVE_LEFT:
+		movement_direction = Order.MOVE_NONE
+		get_parent().remove_child(self)
+		map.reparent_child(self)
+		map.set_owner(self)
+	elif last_side == "left" and movement_direction == Order.MOVE_RIGHT:
+		movement_direction = Order.MOVE_NONE
+		get_parent().remove_child(self)
+		map.reparent_child(self)
+		map.set_owner(self)
 	
 	emit_signal("player_finished_move", self, Game.turn_number)
 	movement_direction = Order.MOVE_NONE
@@ -127,16 +139,32 @@ func _give_order(o):
 					sprite.frame = 1
 					scale.x = 1
 				else:
+					print("RIGHTO?")
+					var right_above_pos = position + Vector2(64, 0)
+					var right_pos = position + Vector2(64, 64)
+					var g_above_pos = to_global(right_above_pos)
+					var g_pos = to_global(right_pos)
 					# reparent to tilemap or new platform
-					pass
+					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+						movement_direction = Order.MOVE_LEFT
+						sprite.frame = 1
+						scale.x = 1
 			MOVE_RIGHT:
 				if current_side != "left":
 					movement_direction = Order.MOVE_RIGHT
 					sprite.frame = 1
 					scale.x = -1
 				else:
+					print("LEFTO?")
+					var left_above_pos = position + Vector2(-64, 0)
+					var left_pos = position + Vector2(-64, -64)
+					var g_above_pos = to_global(left_above_pos)
+					var g_pos = to_global(left_pos)
 					# reparent to tilemap or new platform
-					pass
+					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+						movement_direction = Order.MOVE_RIGHT
+						sprite.frame = 1
+						scale.x = -1
 
 func _input(event):
 	if is_selected and not tween.is_active():
