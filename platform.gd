@@ -44,10 +44,16 @@ func _ready():
 		tween.connect("tween_completed", self, "_on_platform_rotation_end")
 		g.register_platform(self)
 		
+		connect("body_entered", self, "_on_body_enter_platform")
+		
 		left_area.connect("body_entered", self, "_on_body_enter_left")
 		left_area.connect("body_exited", self, "_on_body_exit_left")
 		right_area.connect("body_entered", self, "_on_body_enter_right")
 		right_area.connect("body_exited", self, "_on_body_exit_right")
+
+func _on_body_enter_platform(b):
+	if b.get_parent() != self:
+		b.do_crouch()
 
 func _on_body_enter_left(b):
 	b.current_side = "left"

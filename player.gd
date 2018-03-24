@@ -46,6 +46,7 @@ var last_side
 
 var is_selected = false
 var movement_direction = Order.MOVE_NONE
+var do_crouch = false
 
 var MOVE_TIME = 0.5
 
@@ -63,7 +64,6 @@ func _ready():
 	
 	# connect to turn stuff
 	Game.connect("on_level_step_start", self, "_on_end_turn_start")
-	Game.connect("on_level_step_end", self, "_on_end_turn_squish")
 	tween.connect("tween_completed", self, "_on_tween_done")
 	timer.connect("timeout", self, "_on_end_timer_done")
 
@@ -86,11 +86,10 @@ func _on_tween_done(obj, key):
 	movement_direction = Order.MOVE_NONE
 	tween.stop_all()
 
-func _on_end_turn_squish():
-	if Game.turn_rotation != 0:
-		sprite.frame = 2
-		timer.wait_time = 1
-		timer.start()
+func do_crouch():
+	sprite.frame = 2
+	timer.wait_time = 0.5
+	timer.start()
 
 func _on_end_timer_done():
 	sprite.frame = 0
