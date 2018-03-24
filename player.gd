@@ -60,11 +60,17 @@ func _ready():
 	Game.connect("on_level_step_start", self, "_on_end_turn_start")
 	tween.connect("tween_completed", self, "_on_tween_done")
 
+func rotation_delta():
+	match movement_direction:
+		MOVE_LEFT: return 1
+		MOVE_RIGHT: return -1
+		MOVE_NONE: return 0
+
 func _on_tween_done(obj, key):
-	sprite.frame = 0
-	movement_direction = Order.MOVE_NONE
-	tween.stop_all()
 	emit_signal("player_finished_move", self, Game.turn_number)
+	movement_direction = Order.MOVE_NONE
+	sprite.frame = 0
+	tween.stop_all()
 
 func _on_end_turn_start():
 	if movement_direction != Order.MOVE_NONE:
@@ -101,12 +107,12 @@ func _input(event):
 				if delta.length() < 32:
 					_give_order(Order.MOVE_NONE)
 				else:
-					if orientation == Orientation.LEFT or orientation == Orientation.RIGHT:
+					if get_parent().orientation == Orientation.LEFT or get_parent().orientation == Orientation.RIGHT:
 						if delta.y > 0:
 							_give_order(Order.MOVE_LEFT)
 						elif delta.y < 0:
 							_give_order(Order.MOVE_RIGHT)
-					elif orientation == Orientation.UP or orientation == Orientation.DOWN:
+					elif get_parent().orientation == Orientation.UP or get_parent().orientation == Orientation.DOWN:
 						if delta.x > 0:
 							_give_order(Order.MOVE_LEFT)
 						elif delta.x < 0:

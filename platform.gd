@@ -31,7 +31,10 @@ func _on_platform_rotation_end(obj, key):
 	pass
 
 func _on_level_end_turn():
-	tween.interpolate_property(self, "rotation_degrees", rotation_degrees, rotation_degrees + 90, ROTATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN) 
+	var g = get_node("/root/Game")
+	tween.interpolate_property(self, "rotation_degrees", rotation_degrees, rotation_degrees + g.turn_rotation, ROTATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
 
 func _process(delta):
-	rotation_degrees = _orientation_to_degrees(orientation)
+	if not Engine.editor_hint and not tween.is_active():
+		rotation_degrees = _orientation_to_degrees(orientation)
