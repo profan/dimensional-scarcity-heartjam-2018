@@ -36,6 +36,9 @@ func _degrees_to_orientation(d):
 	elif f == 90 or f == -270:
 		return RIGHT
 
+func type():
+	return "platform"
+
 func _ready():
 	if not Engine.editor_hint:
 		
@@ -56,23 +59,34 @@ func _on_body_enter_platform(b):
 		b.do_crouch()
 
 func _on_body_enter_left(b):
-	if "current_side" in b:
+	if b.type() == "player":
 		b.current_side = "left"
 		print("ENTERO LEFT")
+		if get_child_count() != 8:
+			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
 
 func _on_body_exit_left(b):
-	if "current_side" in b:
+	if b.type() == "player":
 		b.current_side = null
 		b.last_side = "left"
 		print("EXIT LEFT")
 
 func _on_body_enter_right(b):
-	if "current_side" in b:
+	if b.type() == "player":
 		b.current_side = "right"
 		print("ENTERO RIGHT")
+		if get_child_count() != 8:
+			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
+
+func _on_player_finished_moving(p, tn):
+	var g_pos = p.global_position
+	p.get_parent().remove_child(p)
+	add_child(p)
+	p.rotation_degrees = 0
+	p.global_position = g_pos
 
 func _on_body_exit_right(b):
-	if "current_side" in b:
+	if b.type() == "player":
 		b.current_side = null
 		b.last_side = "right"
 		print("EXIT RIGHT")
@@ -82,7 +96,7 @@ func _on_platform_rotation_end(obj, key):
 	tween.stop_all()
 
 func _on_level_end_turn():
-	if get_child_count() != 0:
+	if get_child_count() != 7:
 		var g = get_node("/root/Game")
 		tween.interpolate_property(self, "rotation_degrees", rotation_degrees, rotation_degrees + g.turn_rotation, ROTATION_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()

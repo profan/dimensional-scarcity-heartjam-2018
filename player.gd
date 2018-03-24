@@ -82,6 +82,9 @@ func rotation_delta():
 func set_tilemap(t):
 	map = t
 
+func type():
+	return "player"
+
 func _on_tween_done(obj, key):
 	
 	if last_side == "left" and movement_direction == Order.MOVE_LEFT:
@@ -94,14 +97,30 @@ func _on_tween_done(obj, key):
 	# moving off platform
 	elif last_side == "right" and movement_direction == Order.MOVE_LEFT:
 		movement_direction = Order.MOVE_NONE
-		get_parent().remove_child(self)
-		map.reparent_child(self)
-		map.set_owner(self)
+		
+		var parent = get_parent()
+		if parent.type() == "platform":
+			var g_pos = global_position
+			orientation = parent.orientation
+			rotation_degrees = parent.rotation_degrees
+			parent.remove_child(self)
+			map.reparent_child(self)
+			self.global_position = g_pos
+		
 	elif last_side == "left" and movement_direction == Order.MOVE_RIGHT:
 		movement_direction = Order.MOVE_NONE
-		get_parent().remove_child(self)
-		map.reparent_child(self)
-		map.set_owner(self)
+		
+		var parent = get_parent()
+		if parent.type() == "platform":
+			var g_pos = global_position
+			orientation = parent.orientation
+			rotation_degrees = parent.rotation_degrees
+			parent.remove_child(self)
+			map.reparent_child(self)
+			self.global_position = g_pos
+	
+	if get_parent().type() != "platform":
+		movement_direction = Order.MOVE_NONE
 	
 	emit_signal("player_finished_move", self, Game.turn_number)
 	movement_direction = Order.MOVE_NONE
@@ -176,7 +195,13 @@ func _input(event):
 				if delta.length() < 32:
 					_give_order(Order.MOVE_NONE)
 				else:
-					var p_or = get_parent().orientation
+					
+					var p_or
+					if get_parent().type() == "platform":
+						p_or = get_parent().orientation
+					else:
+						p_or = orientation
+						
 					if p_or == Orientation.LEFT or p_or == Orientation.RIGHT:
 						if p_or == Orientation.LEFT:
 							if delta.y < 0:

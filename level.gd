@@ -14,3 +14,6 @@ func pos_has_tile(pos):
 
 func reparent_child(n):
 	level_map.add_child(n)
+
+func type():
+	return "map"

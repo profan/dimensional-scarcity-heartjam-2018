@@ -8,3 +8,6 @@ func pos_has_tile(pos):
 	var t = get_cellv(tile_pos)
 	printt(tile_pos, t)
 	return t != -1
+
+func type():
+	return "tilemap"
