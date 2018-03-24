@@ -5,7 +5,7 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui.tscn" type="PackedScene" id=4]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -17,6 +17,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 288, 384 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
+orientation = 0
 
 [node name="player" parent="platforms/platform1" index="4" instance=ExtResource( 3 )]
 
@@ -29,6 +30,7 @@ position = Vector2( 64, 95.9773 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
+orientation = 0
 
 [node name="player2" parent="platforms/platform2" index="5" instance=ExtResource( 3 )]
 

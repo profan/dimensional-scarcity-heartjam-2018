@@ -13,7 +13,7 @@ extents = Vector2( 48, 16 )
 custom_solver_bias = 0.0
 extents = Vector2( 12, 16 )
 
-[node name="platform" type="Area2D" index="0"]
+[node name="platform" type="Area2D"]
 
 input_pickable = false
 gravity_vec = Vector2( 0, 1 )

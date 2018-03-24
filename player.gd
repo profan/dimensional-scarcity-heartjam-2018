@@ -101,13 +101,15 @@ func _give_order(o):
 				sprite.frame = 0
 				scale.x = 1
 			MOVE_LEFT:
-				movement_direction = Order.MOVE_LEFT
-				sprite.frame = 1
-				scale.x = 1
+				if current_side != "right":
+					movement_direction = Order.MOVE_LEFT
+					sprite.frame = 1
+					scale.x = 1
 			MOVE_RIGHT:
-				movement_direction = Order.MOVE_RIGHT
-				sprite.frame = 1
-				scale.x = -1
+				if current_side != "left":
+					movement_direction = Order.MOVE_RIGHT
+					sprite.frame = 1
+					scale.x = -1
 
 func _input(event):
 	if is_selected and not tween.is_active():

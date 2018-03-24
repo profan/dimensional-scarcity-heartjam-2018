@@ -52,6 +52,7 @@ func _on_body_enter_left(b):
 	print("ENTERO LEFT")
 
 func _on_body_exit_left(b):
+	b.current_side = null
 	print("EXIT LEFT")
 
 func _on_body_enter_right(b):
@@ -59,6 +60,7 @@ func _on_body_enter_right(b):
 	print("ENTERO RIGHT")
 
 func _on_body_exit_right(b):
+	b.current_side = null
 	print("EXIT RIGHT")
 
 func _on_platform_rotation_end(obj, key):
