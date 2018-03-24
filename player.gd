@@ -163,7 +163,6 @@ func _give_order(o):
 					scale.x = 1
 				else:
 					print("RIGHTO?")
-					scale.x = 1
 					var right_above_pos = position + Vector2(64, 0)
 					var right_pos = position + Vector2(64, 64)
 					var g_above_pos = to_global(right_above_pos)
@@ -177,6 +176,7 @@ func _give_order(o):
 						var p_or = get_parent().orientation
 						movement_direction = Order.MOVE_LEFT
 						sprite.frame = 1
+						scale.x = 1
 			MOVE_RIGHT:
 				if current_side != "left":
 					movement_direction = Order.MOVE_RIGHT
@@ -184,7 +184,6 @@ func _give_order(o):
 					scale.x = -1
 				else:
 					print("LEFTO?")
-					scale.x = -1
 					var left_above_pos = position + Vector2(-64, 0)
 					var left_pos = position + Vector2(-64, 64)
 					var g_above_pos = to_global(left_above_pos)
@@ -198,6 +197,7 @@ func _give_order(o):
 						print("MOVAN LEFTAN")
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
+						scale.x = -1
 
 func _draw():
 	if debug_pos_above and debug_pos:
