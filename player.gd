@@ -165,6 +165,8 @@ func _give_order(o):
 					else:
 						print("RIGHTO?")
 						scale.x = 1
+						sprite.frame = 0
+						movement_direction = Order.MOVE_NONE
 						var right_above_pos = position + Vector2(16, 0)
 						var right_pos = position + Vector2(16, 64)
 						var g_above_pos = to_global(right_above_pos)
@@ -186,7 +188,7 @@ func _give_order(o):
 						UP: 4
 					
 					var right_above_pos = position + Vector2(16, 0)
-					var right_pos = position + Vector2(16, 64)
+					var right_pos = position + Vector2(16, 32)
 					var g_above_pos = to_global(right_above_pos)
 					var g_pos = to_global(right_pos)
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
@@ -202,8 +204,10 @@ func _give_order(o):
 					else:
 						print("LEFTO?")
 						scale.x = -1
-						var left_above_pos = position + Vector2(-16, 0)
-						var left_pos = position + Vector2(-16, 64)
+						sprite.frame = 0
+						movement_direction = Order.MOVE_NONE
+						var left_above_pos = position + Vector2(16, 0)
+						var left_pos = position + Vector2(16, 32)
 						var g_above_pos = to_global(left_above_pos)
 						var g_pos = to_global(left_pos)
 						debug_pos_above = g_above_pos
