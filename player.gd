@@ -163,10 +163,11 @@ func _give_order(o):
 					scale.x = 1
 				else:
 					print("RIGHTO?")
-					var right_above_pos = position + Vector2(64, 0)
-					var right_pos = position + Vector2(64, 64)
+					var right_above_pos = position + Vector2(16, 0)
+					var right_pos = position + Vector2(16, 64)
 					var g_above_pos = to_global(right_above_pos)
 					var g_pos = to_global(right_pos)
+					printt(right_above_pos, right_pos)
 					debug_pos_above = g_above_pos
 					debug_pos = g_pos
 					update()
@@ -184,8 +185,8 @@ func _give_order(o):
 					scale.x = -1
 				else:
 					print("LEFTO?")
-					var left_above_pos = position + Vector2(-64, 0)
-					var left_pos = position + Vector2(-64, 64)
+					var left_above_pos = position + Vector2(-16, 0)
+					var left_pos = position + Vector2(-16, 64)
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
 					debug_pos_above = g_above_pos
