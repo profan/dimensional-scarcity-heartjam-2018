@@ -85,7 +85,7 @@ func _on_player_selected(p):
 func _give_order(o):
 		match o:
 			MOVE_NONE:
-				movement_direction = null
+				movement_direction = Order.MOVE_NONE
 				sprite.frame = 0
 				scale.x = 1
 			MOVE_LEFT:
