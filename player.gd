@@ -181,15 +181,20 @@ func _give_order(o):
 							sprite.frame = 1
 				else:
 					print("TILE RIGHTO")
-					var right_above_pos = position + Vector2(16, 0)
-					var right_pos = position + Vector2(16, 64)
-					var g_above_pos = to_global(right_above_pos)
-					var g_pos = to_global(right_pos)
+					scale.x = 1
+					sprite.frame = 0
+					movement_direction = Order.MOVE_NONE
+					var right_above_pos = position + Vector2(32, 0)
+					var right_pos = position + Vector2(32, 64)
+					var g_above_pos = to_global(right_above_pos) / 2
+					var g_pos = to_global(right_pos) / 2
+					debug_pos_above = g_above_pos
+					debug_pos = g_pos
+					update()
 					if not map.pos_has_tile_local(g_above_pos) and map.pos_has_tile_local(g_pos):
 						print("MOVAN TILE RIGHTO")
 						movement_direction = Order.MOVE_LEFT
 						sprite.frame = 1
-						scale.x = 1
 			MOVE_RIGHT:
 				if get_parent().type() == "platform":
 					if current_side != "left":
@@ -215,22 +220,29 @@ func _give_order(o):
 							sprite.frame = 1
 				else:
 					print("TILE LEFTO")
-					var left_above_pos = position
+					scale.x = -1
+					sprite.frame = 0
+					movement_direction = Order.MOVE_NONE
+					var left_above_pos = position + Vector2(64, 16)
 					var left_pos = position + Vector2(64, 48)
-					var g_above_pos = to_global(left_above_pos)
-					var g_pos = to_global(left_pos)
+					var g_above_pos = to_global(left_above_pos) / 2
+					var g_pos = to_global(left_pos) / 2
+					debug_pos_above = g_above_pos
+					debug_pos = g_pos
+					update()
 					if not map.pos_has_tile_local(g_above_pos) and map.pos_has_tile_local(g_pos):
 						print("MOVAN TILE LEFTO")
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
-						scale.x = -1
 
 func _draw():
 	if debug_pos_above and debug_pos:
 		# var inv = get_global_transform().inverse()
-		#draw_set_transform(inv.get_origin(), inv.get_rotation(), inv.get_scale())
-		draw_rect(Rect2(16, -16, 32, 32), ColorN("fuchsia"))
-		draw_rect(Rect2(16, 16, 32, 32), ColorN("green"))
+		# draw_set_transform(inv.get_origin(), inv.get_rotation(), inv.get_scale())
+		draw_rect(Rect2(debug_pos.x, debug_pos.y, 16, 16), ColorN("fuchsia"))
+		draw_rect(Rect2(debug_pos_above.x, debug_pos_above.y, 16, 16), ColorN("green"))
+		# draw_rect(Rect2(16, -16, 32, 32), ColorN("fuchsia"))
+		# draw_rect(Rect2(16, 16, 32, 32), ColorN("green"))
 
 func _input(event):
 	
