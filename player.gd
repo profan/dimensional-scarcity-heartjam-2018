@@ -40,7 +40,7 @@ onready var coll = get_node("collision")
 onready var tween = get_node("tween")
 
 var is_selected = false
-var movement_direction
+var movement_direction = Order.MOVE_NONE
 
 var MOVE_TIME = 0.5
 
@@ -107,16 +107,29 @@ func _input(event):
 				if delta.length() < 32:
 					_give_order(Order.MOVE_NONE)
 				else:
-					if get_parent().orientation == Orientation.LEFT or get_parent().orientation == Orientation.RIGHT:
-						if delta.y > 0:
-							_give_order(Order.MOVE_LEFT)
-						elif delta.y < 0:
-							_give_order(Order.MOVE_RIGHT)
-					elif get_parent().orientation == Orientation.UP or get_parent().orientation == Orientation.DOWN:
-						if delta.x > 0:
-							_give_order(Order.MOVE_LEFT)
-						elif delta.x < 0:
-							_give_order(Order.MOVE_RIGHT)
+					var p_or = get_parent().orientation
+					if p_or == Orientation.LEFT or p_or == Orientation.RIGHT:
+						if p_or == Orientation.LEFT:
+							if delta.y < 0:
+								_give_order(Order.MOVE_LEFT)
+							elif delta.y > 0:
+								_give_order(Order.MOVE_RIGHT)
+						else:
+							if delta.y > 0:
+								_give_order(Order.MOVE_LEFT)
+							elif delta.y < 0:
+								_give_order(Order.MOVE_RIGHT)
+					elif p_or == Orientation.UP or p_or == Orientation.DOWN:
+						if p_or == Orientation.DOWN:
+							if delta.x < 0:
+								_give_order(Order.MOVE_LEFT)
+							elif delta.x > 0:
+								_give_order(Order.MOVE_RIGHT)
+						else:
+							if delta.x > 0:
+								_give_order(Order.MOVE_LEFT)
+							elif delta.x < 0:
+								_give_order(Order.MOVE_RIGHT)
 
 func _input_event(viewport, ev, shape_idx):
 	if ev is InputEventMouseButton:
