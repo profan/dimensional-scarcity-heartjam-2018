@@ -157,44 +157,69 @@ func _give_order(o):
 				sprite.frame = 0
 				scale.x = 1
 			MOVE_LEFT:
-				if current_side != "right":
-					movement_direction = Order.MOVE_LEFT
-					sprite.frame = 1
-					scale.x = 1
+				if get_parent().type() == "platform":
+					if current_side != "right":
+						movement_direction = Order.MOVE_LEFT
+						sprite.frame = 1
+						scale.x = 1
+					else:
+						print("RIGHTO?")
+						scale.x = 1
+						var right_above_pos = position + Vector2(16, 0)
+						var right_pos = position + Vector2(16, 64)
+						var g_above_pos = to_global(right_above_pos)
+						var g_pos = to_global(right_pos)
+						debug_pos_above = g_above_pos
+						debug_pos = g_pos
+						update()
+						# reparent to tilemap or new platform
+						if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+							print("MOVAN RIGHTAN")
+							movement_direction = Order.MOVE_LEFT
+							sprite.frame = 1
 				else:
-					print("RIGHTO?")
+					var ori = orientation
+					match ori:
+						LEFT: 5
+						RIGHT: 2
+						DOWN: 1
+						UP: 4
+					
 					var right_above_pos = position + Vector2(16, 0)
 					var right_pos = position + Vector2(16, 64)
 					var g_above_pos = to_global(right_above_pos)
 					var g_pos = to_global(right_pos)
-					debug_pos_above = g_above_pos
-					debug_pos = g_pos
-					update()
-					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
-						print("MOVAN RIGHTAN")
-						var p_or = get_parent().orientation
 						movement_direction = Order.MOVE_LEFT
 						sprite.frame = 1
 						scale.x = 1
 			MOVE_RIGHT:
-				if current_side != "left":
-					movement_direction = Order.MOVE_RIGHT
-					sprite.frame = 1
-					scale.x = -1
+				if get_parent().type() == "platform":
+					if current_side != "left":
+						movement_direction = Order.MOVE_RIGHT
+						sprite.frame = 1
+						scale.x = -1
+					else:
+						print("LEFTO?")
+						scale.x = -1
+						var left_above_pos = position + Vector2(-16, 0)
+						var left_pos = position + Vector2(-16, 64)
+						var g_above_pos = to_global(left_above_pos)
+						var g_pos = to_global(left_pos)
+						debug_pos_above = g_above_pos
+						debug_pos = g_pos
+						update()
+						# reparent to tilemap or new platform
+						if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+							print("MOVAN LEFTAN")
+							movement_direction = Order.MOVE_RIGHT
+							sprite.frame = 1
 				else:
-					print("LEFTO?")
 					var left_above_pos = position + Vector2(-16, 0)
 					var left_pos = position + Vector2(-16, 64)
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
-					debug_pos_above = g_above_pos
-					debug_pos = g_pos
-					update()
-					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
-						var p_or = get_parent().orientation
-						print("MOVAN LEFTAN")
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
 						scale.x = -1
