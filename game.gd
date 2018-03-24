@@ -23,20 +23,20 @@ func register_player(p):
 
 # game loop shit
 
-func _end_turn_if_done():
+func _end_turn_if_done(tn):
 	
 	var players_done = 0
 	for p in players:
 		if players[p]:
 			players_done += 1
 	
-	if players_done == players.size():
+	if players_done == players.size() and tn == turn_number:
 		emit_signal("on_level_step_end")
 		turn_number += 1
 
-func _on_player_finished_move(p):
+func _on_player_finished_move(p, tn):
 	players[p.name] = true
-	_end_turn_if_done()
+	call_deferred("_end_turn_if_done", tn)
 
 func select_player(p):
 	emit_signal("on_player_selected", p)

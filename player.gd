@@ -61,7 +61,10 @@ func _ready():
 	tween.connect("tween_completed", self, "_on_tween_done")
 
 func _on_tween_done(obj, key):
-	emit_signal("player_finished_move", self)
+	sprite.frame = 0
+	movement_direction = Order.MOVE_NONE
+	tween.stop_all()
+	emit_signal("player_finished_move", self, Game.turn_number)
 
 func _on_end_turn_start():
 	if movement_direction != Order.MOVE_NONE:
@@ -89,7 +92,7 @@ func _give_order(o):
 				scale.x = -1
 
 func _input(event):
-	if is_selected:
+	if is_selected and not tween.is_active():
 		if event is InputEventMouseButton:
 			if event.is_action_pressed("mouse_left"):
 				_on_deselect()
