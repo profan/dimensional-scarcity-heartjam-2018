@@ -29,19 +29,45 @@ func _orientation_to_upvec(o):
 		LEFT: return Vector2(-1, 0)
 		RIGHT: return Vector2(1, 0)
 
+func _order_to_vec(o):
+	match o:
+		MOVE_LEFT: return Vector2(1, 0)
+		MOVE_RIGHT:	 return Vector2(-1, 0)
+
 onready var sprite = get_node("sprite")
 onready var selector = get_node("selector")
 onready var coll = get_node("collision")
+onready var tween = get_node("tween")
 
 var is_selected = false
 var movement_direction
 
+var MOVE_TIME = 0.5
+
+signal player_finished_move(p)
+
 func _ready():
+	
 	set_physics_process(true)
-	set_process_unhandled_input(true)
 	connect("input_event", self, "_input_event")
 	Game.connect("on_player_selected", self, "_on_player_selected")
 	selector.visible = false
+	
+	# register myself
+	Game.register_player(self)
+	
+	# connect to turn stuff
+	Game.connect("on_level_step_start", self, "_on_end_turn_start")
+	tween.connect("tween_completed", self, "_on_tween_done")
+
+func _on_tween_done(obj, key):
+	emit_signal("player_finished_move", self)
+
+func _on_end_turn_start():
+	if movement_direction != Order.MOVE_NONE:
+		var move_delta = _order_to_vec(movement_direction) * 32 # HACK FIXME
+		tween.interpolate_property(self, "position", position, position + move_delta, MOVE_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.start()
 
 func _on_player_selected(p):
 	if p == self: return
