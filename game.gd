@@ -14,6 +14,7 @@ var turn_number
 var turn_rotation
 var players = {}
 var platforms = {}
+var cur_map
 
 func _ready():
 	pass
@@ -49,6 +50,12 @@ func _on_player_finished_move(p, tn):
 
 func _on_platform_finished_move(p, tn):
 	platforms[p.name] = true
+
+func set_map(t):
+	cur_map = t
+
+func get_map():
+	return cur_map
 
 func select_player(p):
 	emit_signal("on_player_selected", p)

@@ -67,6 +67,11 @@ func _ready():
 	Game.connect("on_level_step_start", self, "_on_end_turn_start")
 	tween.connect("tween_completed", self, "_on_tween_done")
 	timer.connect("timeout", self, "_on_end_timer_done")
+	
+	call_deferred("_after_ready")
+
+func _after_ready():
+	map = Game.get_map()
 
 func rotation_delta():
 	match movement_direction:
