@@ -163,6 +163,7 @@ func _give_order(o):
 					scale.x = 1
 				else:
 					print("RIGHTO?")
+					scale.x = 1
 					var right_above_pos = position + Vector2(64, 0)
 					var right_pos = position + Vector2(64, 64)
 					var g_above_pos = to_global(right_above_pos)
@@ -172,9 +173,10 @@ func _give_order(o):
 					update()
 					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+						print("MOVAN RIGHTAN")
+						var p_or = get_parent().orientation
 						movement_direction = Order.MOVE_LEFT
 						sprite.frame = 1
-						scale.x = 1
 			MOVE_RIGHT:
 				if current_side != "left":
 					movement_direction = Order.MOVE_RIGHT
@@ -182,8 +184,9 @@ func _give_order(o):
 					scale.x = -1
 				else:
 					print("LEFTO?")
-					var left_above_pos = position + Vector2(64, 0)
-					var left_pos = position + Vector2(64, 64)
+					scale.x = -1
+					var left_above_pos = position + Vector2(-64, 0)
+					var left_pos = position + Vector2(-64, 64)
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
 					debug_pos_above = g_above_pos
@@ -191,18 +194,24 @@ func _give_order(o):
 					update()
 					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+						var p_or = get_parent().orientation
+						print("MOVAN LEFTAN")
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
-						scale.x = -1
 
 func _draw():
 	if debug_pos_above and debug_pos:
-		var inv = get_global_transform().inverse()
-		draw_set_transform(inv.get_origin(), inv.get_rotation(), inv.get_scale())
-		draw_rect(Rect2(debug_pos_above.x, debug_pos_above.y, 32, 32), ColorN("fuchsia"))
-		draw_rect(Rect2(debug_pos.x, debug_pos.y, 32, 32), ColorN("green"))
+		# var inv = get_global_transform().inverse()
+		#draw_set_transform(inv.get_origin(), inv.get_rotation(), inv.get_scale())
+		draw_rect(Rect2(16, -16, 32, 32), ColorN("fuchsia"))
+		draw_rect(Rect2(16, 16, 32, 32), ColorN("green"))
 
 func _input(event):
+	
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("mouse_left"):
+			print("tile has pos: %s" % [map.pos_has_tile(event.global_position)])
+			
 	if is_selected and not tween.is_active():
 		if event is InputEventMouseButton:
 			if event.is_action_pressed("mouse_left"):
