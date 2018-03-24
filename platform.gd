@@ -52,26 +52,30 @@ func _ready():
 		right_area.connect("body_exited", self, "_on_body_exit_right")
 
 func _on_body_enter_platform(b):
-	if b.get_parent() != self:
+	if b.get_parent() != self and b.has_method("do_crouch"):
 		b.do_crouch()
 
 func _on_body_enter_left(b):
-	b.current_side = "left"
-	print("ENTERO LEFT")
+	if "current_side" in b:
+		b.current_side = "left"
+		print("ENTERO LEFT")
 
 func _on_body_exit_left(b):
-	b.current_side = null
-	b.last_side = "left"
-	print("EXIT LEFT")
+	if "current_side" in b:
+		b.current_side = null
+		b.last_side = "left"
+		print("EXIT LEFT")
 
 func _on_body_enter_right(b):
-	b.current_side = "right"
-	print("ENTERO RIGHT")
+	if "current_side" in b:
+		b.current_side = "right"
+		print("ENTERO RIGHT")
 
 func _on_body_exit_right(b):
-	b.current_side = null
-	b.last_side = "right"
-	print("EXIT RIGHT")
+	if "current_side" in b:
+		b.current_side = null
+		b.last_side = "right"
+		print("EXIT RIGHT")
 
 func _on_platform_rotation_end(obj, key):
 	orientation = _degrees_to_orientation(rotation_degrees)

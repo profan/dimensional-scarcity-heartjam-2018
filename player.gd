@@ -49,6 +49,7 @@ var movement_direction = Order.MOVE_NONE
 var do_crouch = false
 
 var MOVE_TIME = 0.5
+var map
 
 signal player_finished_move(p)
 
@@ -72,6 +73,9 @@ func rotation_delta():
 		MOVE_LEFT: return 1
 		MOVE_RIGHT: return -1
 		MOVE_NONE: return 0
+
+func set_tilemap(t):
+	map = t
 
 func _on_tween_done(obj, key):
 	
