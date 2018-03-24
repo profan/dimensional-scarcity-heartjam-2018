@@ -206,8 +206,8 @@ func _give_order(o):
 						scale.x = -1
 						sprite.frame = 0
 						movement_direction = Order.MOVE_NONE
-						var left_above_pos = position + Vector2(16, 0)
-						var left_pos = position + Vector2(16, 32)
+						var left_above_pos = position + Vector2(64, 16)
+						var left_pos = position + Vector2(64, 48)
 						var g_above_pos = to_global(left_above_pos)
 						var g_pos = to_global(left_pos)
 						debug_pos_above = g_above_pos
