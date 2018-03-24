@@ -10,6 +10,9 @@ func _ready():
 	Game.start_level()
 
 func pos_has_tile(pos):
+	return level_map.pos_has_tile(pos / 2)
+	
+func pos_has_tile_local(pos):
 	return level_map.pos_has_tile(pos)
 
 func reparent_child(n):

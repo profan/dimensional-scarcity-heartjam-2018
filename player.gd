@@ -180,18 +180,13 @@ func _give_order(o):
 							movement_direction = Order.MOVE_LEFT
 							sprite.frame = 1
 				else:
-					var ori = orientation
-					match ori:
-						LEFT: 5
-						RIGHT: 2
-						DOWN: 1
-						UP: 4
-					
+					print("TILE RIGHTO")
 					var right_above_pos = position + Vector2(16, 0)
-					var right_pos = position + Vector2(16, 32)
+					var right_pos = position + Vector2(16, 64)
 					var g_above_pos = to_global(right_above_pos)
 					var g_pos = to_global(right_pos)
-					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+					if not map.pos_has_tile_local(g_above_pos) and map.pos_has_tile_local(g_pos):
+						print("MOVAN TILE RIGHTO")
 						movement_direction = Order.MOVE_LEFT
 						sprite.frame = 1
 						scale.x = 1
@@ -219,11 +214,13 @@ func _give_order(o):
 							movement_direction = Order.MOVE_RIGHT
 							sprite.frame = 1
 				else:
-					var left_above_pos = position + Vector2(-16, 0)
-					var left_pos = position + Vector2(-16, 64)
+					print("TILE LEFTO")
+					var left_above_pos = position
+					var left_pos = position + Vector2(64, 48)
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
-					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
+					if not map.pos_has_tile_local(g_above_pos) and map.pos_has_tile_local(g_pos):
+						print("MOVAN TILE LEFTO")
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
 						scale.x = -1
