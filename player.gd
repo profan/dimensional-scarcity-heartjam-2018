@@ -167,7 +167,6 @@ func _give_order(o):
 					var right_pos = position + Vector2(16, 64)
 					var g_above_pos = to_global(right_above_pos)
 					var g_pos = to_global(right_pos)
-					printt(right_above_pos, right_pos)
 					debug_pos_above = g_above_pos
 					debug_pos = g_pos
 					update()
