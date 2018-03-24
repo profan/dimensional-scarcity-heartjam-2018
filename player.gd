@@ -41,6 +41,7 @@ onready var tween = get_node("tween")
 
 # what side am i on currently
 var current_side
+var last_side
 
 var is_selected = false
 var movement_direction = Order.MOVE_NONE
@@ -71,12 +72,12 @@ func rotation_delta():
 
 func _on_tween_done(obj, key):
 	
-	if current_side == "left" and movement_direction == Order.MOVE_LEFT:
+	if last_side == "left" and movement_direction == Order.MOVE_LEFT:
 		movement_direction = Order.MOVE_NONE
-		current_side = null
-	elif current_side == "right" and movement_direction == Order.MOVE_RIGHT:
+		last_side = null
+	elif last_side == "right" and movement_direction == Order.MOVE_RIGHT:
 		movement_direction = Order.MOVE_NONE
-		current_side = null
+		last_side = null
 	
 	emit_signal("player_finished_move", self, Game.turn_number)
 	movement_direction = Order.MOVE_NONE
