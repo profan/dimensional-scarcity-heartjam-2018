@@ -126,11 +126,17 @@ func _give_order(o):
 					movement_direction = Order.MOVE_LEFT
 					sprite.frame = 1
 					scale.x = 1
+				else:
+					# reparent to tilemap or new platform
+					pass
 			MOVE_RIGHT:
 				if current_side != "left":
 					movement_direction = Order.MOVE_RIGHT
 					sprite.frame = 1
 					scale.x = -1
+				else:
+					# reparent to tilemap or new platform
+					pass
 
 func _input(event):
 	if is_selected and not tween.is_active():
