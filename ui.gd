@@ -8,7 +8,7 @@ func _ready():
 	Game.connect("on_level_step_end", self, "_on_turn_end")
 
 func _on_turn_end():
-	turn_label.text = "Turn Number: %d" % Game.turn_number
+	turn_label.text = "Turn: %d" % Game.turn_number
 
 func _on_end_turn_press():
 	Game.step_level()

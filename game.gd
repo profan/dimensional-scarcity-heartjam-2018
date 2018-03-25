@@ -61,7 +61,7 @@ func select_player(p):
 	emit_signal("on_player_selected", p)
 
 func start_level():
-	turn_number = 0
+	turn_number = 1
 	turn_rotation = 0
 	players = {}
 	platforms = {}
