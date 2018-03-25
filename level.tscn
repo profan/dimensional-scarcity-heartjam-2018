@@ -70,9 +70,8 @@ rotation = 1.5708
 [node name="platform1" parent="platforms" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 352, 608 )
-rotation = 3.14159
 scale = Vector2( 2, 2 )
-orientation = 1
+orientation = 0
 
 [node name="player1" parent="platforms/platform1" index="4" instance=ExtResource( 6 )]
 
