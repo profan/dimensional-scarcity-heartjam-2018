@@ -15,7 +15,7 @@ onready var coll = get_node("main_coll")
 onready var left_area = get_node("left_area")
 onready var right_area = get_node("right_area")
 
-var ROTATION_TIME = 1 # seconds
+var ROTATION_TIME = 0.5 # seconds
 var rotating = false
 
 func _orientation_to_degrees(o):
