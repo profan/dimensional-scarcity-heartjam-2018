@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://main_menu.gd" type="Script" id=1]
+[ext_resource path="res://main_menu_font.tres" type="DynamicFont" id=2]
 
 [node name="main_menu" type="Control"]
 
@@ -16,16 +17,40 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
 
-[node name="buttons" type="VBoxContainer" parent="." index="0"]
+[node name="title" type="Label" parent="." index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -198.0
+margin_top = 161.0
+margin_right = 197.0
+margin_bottom = 196.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "dimensional scarcity"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
+
+[node name="buttons" type="VBoxContainer" parent="." index="1"]
 
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -34.0
-margin_right = 20.0
-margin_bottom = 34.0
+margin_left = -97.5
+margin_top = -65.5
+margin_right = 97.5
+margin_bottom = 65.5
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -40,8 +65,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 72.0
-margin_bottom = 20.0
+margin_right = 195.0
+margin_bottom = 41.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -49,13 +74,16 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "Start"
-flat = false
+flat = true
 align = 1
+_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
 [node name="options_btn" type="Button" parent="buttons" index="1"]
 
@@ -63,9 +91,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 24.0
-margin_right = 72.0
-margin_bottom = 44.0
+margin_top = 45.0
+margin_right = 195.0
+margin_bottom = 86.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -73,13 +101,16 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "Configure"
-flat = false
+flat = true
 align = 1
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="quit_btn" type="Button" parent="buttons" index="2"]
 
@@ -87,9 +118,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 48.0
-margin_right = 72.0
-margin_bottom = 68.0
+margin_top = 90.0
+margin_right = 195.0
+margin_bottom = 131.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -97,12 +128,15 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "Quit"
-flat = false
+flat = true
 align = 1
+_sections_unfolded = [ "custom_fonts" ]
 
 
