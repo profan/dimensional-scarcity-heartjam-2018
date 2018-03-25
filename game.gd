@@ -17,6 +17,7 @@ var is_rotating
 
 var turn_number
 var turn_rotation
+var players_done
 var platforms = {}
 var players = {}
 var cur_map
@@ -61,6 +62,11 @@ func _on_player_finished_move(p, tn):
 func _on_platform_finished_move(p, tn):
 	platforms[p.name] = true
 
+func player_reached_goal(p):
+	players_done += 1
+	if players_done == players.size():
+		emit_signal("on_level_end")
+
 func switch_players():
 	var one_selected = false
 	for pid in players:
@@ -83,9 +89,11 @@ func select_player(p):
 func start_level():
 	turn_number = 1
 	turn_rotation = 0
+	players_done = 0
 
 func reset_level():
 	emit_signal("on_level_reset")
+	players_done = 0
 	platforms = {}
 	players = {}
 

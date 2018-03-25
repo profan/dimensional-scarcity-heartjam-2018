@@ -10,7 +10,7 @@ func _ready():
 	quit_btn.connect("pressed", self, "_on_quit")
 
 func _on_start():
-	SceneSwitcher.goto_scene("res://level.tscn")
+	SceneSwitcher.goto_scene("res://levels/level_1.tscn")
 
 func _on_options():
 	pass

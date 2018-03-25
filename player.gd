@@ -61,6 +61,7 @@ signal before_player_finished_move(p)
 signal player_finished_move(p, tn)
 
 # controle
+var has_reached_goal
 var can_move
 
 # debug
@@ -358,6 +359,10 @@ func _input_event(viewport, ev, shape_idx):
 func _physics_process(delta):
 	pass
 
+func reached_goal():
+	has_reached_goal = true
+	Game.player_reached_goal(self)
+
 func _on_select():
 	Game.select_player(self)
 	is_selected = true
@@ -368,7 +373,8 @@ func _on_deselect():
 	selector.visible = false
 
 func _on_step_rot_end():
-	can_move = true
+	if not has_reached_goal:
+		can_move = true
 
 func _on_reset():
 	pass
