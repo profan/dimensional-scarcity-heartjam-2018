@@ -69,6 +69,7 @@ var debug_pos_above
 var debug_pos
 
 # to other platform moving
+var other_platform_infront_ref = null
 var other_platform_infront = false
 var other_platform_dir = 0
 
@@ -95,11 +96,13 @@ func _ready():
 
 func _on_front_area_entered(a):
 	if a.get_parent().type() == "platform":
+		other_platform_infront_ref = a.get_parent()
 		other_platform_infront = true
 		other_platform_dir = scale.x
 
 func _on_front_area_exited(a):
 	if a.get_parent().type() == "platform":
+		other_platform_infront_ref = null
 		other_platform_infront = false
 		other_platform_dir = 0
 
@@ -195,6 +198,13 @@ func _on_player_selected(p):
 	if p == self: return
 	else: _on_deselect()
 
+func _get_orientation():
+	var p = get_parent()
+	if p.type() == "platform":
+		return p.orientation
+	else:
+		return orientation
+
 func _give_order(o):
 	match o:
 		MOVE_NONE:
@@ -235,9 +245,11 @@ func _give_order(o):
 					movement_direction = Order.MOVE_LEFT
 					sprite.frame = 1
 				elif other_platform_infront and other_platform_dir == 1:
-					print("MOVAN PLATFORM RIGHTO")
-					movement_direction = Order.MOVE_LEFT
-					sprite.frame = 1
+					var p_or = _get_orientation()
+					if other_platform_infront_ref.orientation == p_or:
+						print("MOVAN PLATFORM RIGHTO")
+						movement_direction = Order.MOVE_LEFT
+						sprite.frame = 1
 		MOVE_RIGHT:
 			if get_parent().type() == "platform":
 				if current_side != "left":
@@ -284,9 +296,11 @@ func _give_order(o):
 					movement_direction = Order.MOVE_RIGHT
 					sprite.frame = 1
 				elif other_platform_infront  and other_platform_dir == -1:
-					print("MOVAN PLATFORM LEFTO")
-					movement_direction = Order.MOVE_RIGHT
-					sprite.frame = 1
+					var p_or = _get_orientation()
+					if other_platform_infront_ref.orientation == _get_orientation():
+						print("MOVAN PLATFORM LEFTO")
+						movement_direction = Order.MOVE_RIGHT
+						sprite.frame = 1
 
 func _draw():
 	if debug_pos_above and debug_pos:
@@ -321,13 +335,7 @@ func _input(event):
 				if delta.length() < 32:
 					_give_order(Order.MOVE_NONE)
 				else:
-					
-					var p_or
-					if get_parent().type() == "platform":
-						p_or = get_parent().orientation
-					else:
-						p_or = orientation
-						
+					var p_or = _get_orientation()
 					if p_or == Orientation.LEFT or p_or == Orientation.RIGHT:
 						if p_or == Orientation.LEFT:
 							if delta.y < 0:

@@ -83,7 +83,7 @@ orientation = 1
 [node name="player2" parent="platforms/platform2" index="6" instance=ExtResource( 6 )]
 
 position = Vector2( -32, -32 )
-orientation = 3
+orientation = 1
 
 [node name="platform3" parent="platforms" index="1" instance=ExtResource( 5 )]
 
