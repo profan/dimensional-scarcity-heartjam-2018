@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main_menu_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui.tscn" type="PackedScene" id=2]
+
+[node name="canvas" type="CanvasLayer" index="0"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="level_title" type="Label" parent="." index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -288.0
+margin_top = -160.0
+margin_right = 262.0
+margin_bottom = -125.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "SOME LONG ASS LEVLE TITLE"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Material", "Visibility", "custom_colors", "custom_fonts" ]
+
+[node name="ui_mod" type="CanvasModulate" parent="." index="1"]
+
+color = Color( 1, 1, 1, 1 )
+
+[node name="ui" parent="." index="2" instance=ExtResource( 2 )]
+
+

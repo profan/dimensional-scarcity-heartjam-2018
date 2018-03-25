@@ -6,13 +6,14 @@
 [ext_resource path="res://goal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://platform.tscn" type="PackedScene" id=5]
 [ext_resource path="res://player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui_canvas.tscn" type="PackedScene" id=7]
 
-[node name="level" type="Node2D" index="0"]
+[node name="level" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 next_level = "level_2"
+level_title = "Baby Steps"
 
 [node name="bg_map" type="TileMap" parent="." index="0"]
 
@@ -91,18 +92,6 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="canvas" type="CanvasLayer" parent="." index="6"]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="ui_mod" type="CanvasModulate" parent="canvas" index="0"]
-
-color = Color( 1, 1, 1, 1 )
-
-[node name="ui" parent="canvas" index="1" instance=ExtResource( 7 )]
+[node name="canvas" parent="." index="6" instance=ExtResource( 7 )]
 
 
