@@ -84,6 +84,16 @@ func _on_body_enter_right(b):
 			b.connect("before_player_finished_move", self, "_before_player_finished_moving", [], CONNECT_ONESHOT)
 			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
 
+func _on_body_exit_right(b):
+	if b.type() == "player":
+		b.current_side = null
+		b.last_side = "right"
+		print("EXIT RIGHT")
+		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
+			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
+		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
+			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
+
 func _before_player_finished_moving(p):
 	if p.current_side == "left":
 		p.movement_direction = p.Order.MOVE_RIGHT
@@ -97,19 +107,9 @@ func _on_player_finished_moving(p, tn):
 	p.rotation_degrees = 0
 	p.global_position = g_pos
 
-func _on_body_exit_right(b):
-	if b.type() == "player":
-		b.current_side = null
-		b.last_side = "right"
-		print("EXIT RIGHT")
-		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
-			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
-		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
-			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
-
 func _on_platform_rotation_end(obj, key):
-	orientation = _degrees_to_orientation(rotation_degrees)
 	tween.stop_all()
+	orientation = _degrees_to_orientation(rotation_degrees)
 
 func _on_level_end_turn():
 	if get_child_count() != 7:

@@ -4,11 +4,16 @@ signal on_level_start
 signal on_level_reset
 signal on_level_step_start
 signal on_level_step_end
+signal on_level_step_end_rot
 signal on_level_end
 
 signal on_player_selected(p)
 signal on_player_deselected(p)
 signal on_player_given_order(o)
+
+onready var plat_timer = get_node("platform_timer")
+
+var is_rotating
 
 var turn_number
 var turn_rotation
@@ -17,7 +22,12 @@ var players = {}
 var cur_map
 
 func _ready():
-	pass
+	plat_timer.wait_time = 1 # HACK HARDCODED FIXME
+	plat_timer.connect("timeout", self, "_on_plat_rotation_done")
+
+func _on_plat_rotation_done():
+	emit_signal("on_level_step_end_rot")
+	plat_timer.stop()
 
 # register things
 func register_player(p):
@@ -41,6 +51,7 @@ func _end_turn_if_done(tn):
 		emit_signal("on_level_step_end")
 		turn_rotation = 0
 		turn_number += 1
+		plat_timer.start()
 
 func _on_player_finished_move(p, tn):
 	var rotation_delta = p.rotation_delta()

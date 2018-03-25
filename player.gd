@@ -60,6 +60,9 @@ var map
 signal before_player_finished_move(p)
 signal player_finished_move(p, tn)
 
+# controle
+var can_move
+
 # debug
 var debug_pos_above
 var debug_pos
@@ -86,6 +89,7 @@ func _ready():
 	front_area.connect("area_exited", self, "_on_front_area_exited")
 	
 	call_deferred("_after_ready")
+	can_move = true
 
 func _on_front_area_entered(a):
 	if a.get_parent().type() == "platform":
@@ -289,6 +293,8 @@ func _draw():
 
 func _input(event):
 	
+	if not can_move: return
+	
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("mouse_left"):
 			print("tile has pos: %s" % [map.pos_has_tile(event.global_position)])
@@ -355,10 +361,13 @@ func _on_deselect():
 	selector.visible = false
 
 func _on_step_start():
-	pass
+	can_move = false
 
 func _on_step_end():
 	pass
+
+func _on_step_rot_end():
+	can_move = true
 
 func _on_reset():
 	pass
