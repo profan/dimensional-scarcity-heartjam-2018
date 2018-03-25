@@ -213,10 +213,10 @@ func _give_order(o):
 				scale.x = 1
 				sprite.frame = 0
 				movement_direction = Order.MOVE_NONE
-				var right_above_pos = position + Vector2(32, 0)
-				var right_pos = position + Vector2(32, 64)
-				var g_above_pos = to_global(right_above_pos) / 2
-				var g_pos = to_global(right_pos) / 2
+				var right_above_pos = global_position + Vector2(64, 0).rotated(rotation)
+				var right_pos = global_position + Vector2(64, 64).rotated(rotation)
+				var g_above_pos = right_above_pos
+				var g_pos = right_pos
 				debug_pos_above = g_above_pos
 				debug_pos = g_pos
 				update()
@@ -256,10 +256,10 @@ func _give_order(o):
 				sprite.frame = 0
 				movement_direction = Order.MOVE_NONE
 				scale.x = 1
-				var left_above_pos = position + Vector2(-64, 16)
-				var left_pos = position + Vector2(-64, 48)
-				var g_above_pos = to_global(left_above_pos) / 2
-				var g_pos = to_global(left_pos) / 2
+				var left_above_pos = global_position + Vector2(-64, 16).rotated(rotation)
+				var left_pos = global_position + Vector2(-64, 48).rotated(rotation)
+				var g_above_pos = left_above_pos
+				var g_pos = left_pos
 				scale.x = -1
 				if not map.pos_has_tile_local(g_above_pos) and map.pos_has_tile_local(g_pos):
 					print("MOVAN TILE LEFTO")

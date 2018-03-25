@@ -36,7 +36,7 @@ texture = ExtResource( 2 )
 hframes = 3
 region_rect = Rect2( 1, 1, 32, 32 )
 script = ExtResource( 3 )
-_sections_unfolded = [ "Animation", "Offset", "Region" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
 [node name="selector" type="Sprite" parent="." index="2"]
 
