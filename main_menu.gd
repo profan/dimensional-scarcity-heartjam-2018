@@ -15,7 +15,7 @@ func _on_start():
 	SceneSwitcher.goto_scene("res://levels/level_1.tscn")
 
 func _on_options():
-	pass
+	SceneSwitcher.goto_scene("res://options_menu.tscn")
 
 func _on_how():
 	SceneSwitcher.goto_scene("res://how_to_play.tscn")

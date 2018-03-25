@@ -13,6 +13,11 @@ signal on_player_given_order(o)
 
 onready var plat_timer = get_node("platform_timer")
 
+# global config
+var use_fades = true
+
+# game vars
+
 var is_rotating
 
 var turn_number
