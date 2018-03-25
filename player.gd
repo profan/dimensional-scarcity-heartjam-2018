@@ -353,7 +353,7 @@ func _input(event):
 
 func _input_event(viewport, ev, shape_idx):
 	if ev is InputEventMouseButton:
-		if ev.is_action_pressed("mouse_left"):
+		if ev.is_action_pressed("mouse_left") and not has_reached_goal:
 			_on_select()
 
 func _physics_process(delta):
