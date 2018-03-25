@@ -12,8 +12,8 @@ signal on_player_given_order(o)
 
 var turn_number
 var turn_rotation
-var players = {}
 var platforms = {}
+var players = {}
 var cur_map
 
 func _ready():
@@ -43,13 +43,22 @@ func _end_turn_if_done(tn):
 		turn_number += 1
 
 func _on_player_finished_move(p, tn):
-	players[p.name] = true
 	var rotation_delta = p.rotation_delta()
 	turn_rotation += rotation_delta * 90
 	call_deferred("_end_turn_if_done", tn)
 
 func _on_platform_finished_move(p, tn):
 	platforms[p.name] = true
+
+func switch_players():
+	var one_selected = false
+	for pid in players:
+		var p = players[pid]
+		if p.is_selected:
+			p._on_deselect()
+		elif not one_selected:
+			p._on_select()
+			one_selected = true
 
 func set_map(t):
 	cur_map = t
@@ -63,11 +72,11 @@ func select_player(p):
 func start_level():
 	turn_number = 1
 	turn_rotation = 0
-	players = {}
-	platforms = {}
 
 func reset_level():
 	emit_signal("on_level_reset")
+	platforms = {}
+	players = {}
 
 func step_level():
 	emit_signal("on_level_step_start")

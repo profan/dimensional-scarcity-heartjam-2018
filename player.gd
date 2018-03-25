@@ -294,7 +294,12 @@ func _input(event):
 			print("tile has pos: %s" % [map.pos_has_tile(event.global_position)])
 			
 	if is_selected and not tween.is_active():
-		if event is InputEventMouseButton:
+		if event is InputEventKey:
+			if event.is_action_pressed("player_move_left"):
+				_give_order(Order.MOVE_RIGHT)
+			elif event.is_action_pressed("player_move_right"):
+				_give_order(Order.MOVE_LEFT)
+		elif event is InputEventMouseButton:
 			if event.is_action_pressed("mouse_left"):
 				_on_deselect()
 			elif event.is_action_pressed("mouse_right"):
