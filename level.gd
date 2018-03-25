@@ -70,10 +70,10 @@ func _on_end_level():
 func _input(event):
 	if event is InputEventKey:
 		if event.is_action_pressed("reset_level"):
-			Game.reset_level()
 			reload_level()
 
 func reload_level():
+	Game.reset_level()
 	SceneSwitcher.goto_scene(filename)
 
 func on_load_level():
