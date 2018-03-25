@@ -120,3 +120,5 @@ func _on_level_end_turn():
 func _process(delta):
 	if not Engine.editor_hint and not tween.is_active():
 		rotation_degrees = _orientation_to_degrees(orientation)
+	elif Engine.editor_hint:
+		rotation_degrees = _orientation_to_degrees(orientation)
