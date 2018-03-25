@@ -26,19 +26,25 @@ func _orientation_to_upvec(o):
 	match o:
 		UP: return Vector2(0, -1)
 		DOWN: return Vector2(0, 1)
-		LEFT: return Vector2(-1, 0)
-		RIGHT: return Vector2(1, 0)
+		LEFT: return Vector2(1, 0)
+		RIGHT: return Vector2(-1, 0)
 
 func _order_to_vec(o):
 	match o:
 		MOVE_LEFT: return Vector2(1, 0)
 		MOVE_RIGHT:	 return Vector2(-1, 0)
 
+func _order_to_vec_side(o):
+	match o:
+		MOVE_LEFT: return Vector2(0, 1)
+		MOVE_RIGHT:	 return Vector2(0, -1)
+
 onready var sprite = get_node("sprite")
 onready var selector = get_node("selector")
 onready var coll = get_node("collision")
 onready var tween = get_node("tween")
 onready var timer = get_node("timer")
+onready var front_area = get_node("front")
 
 # what side am i on currently
 var current_side
@@ -57,6 +63,9 @@ signal player_finished_move(p)
 var debug_pos_above
 var debug_pos
 
+# to other platform moving
+var other_platform_infront = false
+
 func _ready():
 	
 	set_physics_process(true)
@@ -71,8 +80,18 @@ func _ready():
 	Game.connect("on_level_step_start", self, "_on_end_turn_start")
 	tween.connect("tween_completed", self, "_on_tween_done")
 	timer.connect("timeout", self, "_on_end_timer_done")
+	front_area.connect("area_entered", self, "_on_front_area_entered")
+	front_area.connect("area_exited", self, "_on_front_area_exited")
 	
 	call_deferred("_after_ready")
+
+func _on_front_area_entered(a):
+	if a.get_parent().type() == "platform":
+		other_platform_infront = true
+
+func _on_front_area_exited(a):
+	if a.get_parent().type() == "platform":
+		other_platform_infront = false
 
 func _after_ready():
 	map = Game.get_map()
@@ -141,7 +160,17 @@ func _on_end_timer_done():
 
 func _on_end_turn_start():
 	if movement_direction != Order.MOVE_NONE:
-		var move_delta = _order_to_vec(movement_direction) * 32 # HACK FIXME
+		var move_delta
+		if get_parent().type() == "platform":
+			move_delta = _order_to_vec(movement_direction) * 32 # HACK FIXME
+		else:
+			var move_vec
+			match [movement_direction, orientation]:
+				[MOVE_LEFT, UP], [MOVE_RIGHT, UP]: move_vec = _order_to_vec(movement_direction)
+				[MOVE_LEFT, DOWN], [MOVE_RIGHT, DOWN]: move_vec = _order_to_vec(movement_direction)
+				[MOVE_LEFT, LEFT], [MOVE_RIGHT, LEFT]: move_vec = _order_to_vec_side(movement_direction)
+				[MOVE_LEFT, RIGHT], [MOVE_RIGHT, RIGHT]: move_vec = _order_to_vec_side(movement_direction)
+			move_delta = move_vec * 32
 		tween.interpolate_property(self, "position", position, position + move_delta, MOVE_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		sprite.frame = 0
 		tween.start()
@@ -195,6 +224,10 @@ func _give_order(o):
 					print("MOVAN TILE RIGHTO")
 					movement_direction = Order.MOVE_LEFT
 					sprite.frame = 1
+				elif other_platform_infront:
+					print("MOVAN PLATFORM RIGHTO")
+					movement_direction = Order.MOVE_LEFT
+					sprite.frame = 1
 		MOVE_RIGHT:
 			if get_parent().type() == "platform":
 				if current_side != "left":
@@ -222,6 +255,7 @@ func _give_order(o):
 				print("TILE LEFTO")
 				sprite.frame = 0
 				movement_direction = Order.MOVE_NONE
+				scale.x = 1
 				var left_above_pos = position + Vector2(-64, 16)
 				var left_pos = position + Vector2(-64, 48)
 				var g_above_pos = to_global(left_above_pos) / 2
@@ -229,6 +263,10 @@ func _give_order(o):
 				scale.x = -1
 				if not map.pos_has_tile_local(g_above_pos) and map.pos_has_tile_local(g_pos):
 					print("MOVAN TILE LEFTO")
+					movement_direction = Order.MOVE_RIGHT
+					sprite.frame = 1
+				elif other_platform_infront:
+					print("MOVAN PLATFORM LEFTO")
 					movement_direction = Order.MOVE_RIGHT
 					sprite.frame = 1
 

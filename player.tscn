@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://art/player.png" type="Texture" id=2]
@@ -10,7 +10,12 @@
 custom_solver_bias = 0.0
 extents = Vector2( 9, 14 )
 
-[node name="player" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="player" type="KinematicBody2D" index="0"]
 
 input_pickable = true
 collision_layer = 1
@@ -52,5 +57,24 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
+
+[node name="front" type="Area2D" parent="." index="5"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="coll" type="CollisionShape2D" parent="front" index="0"]
+
+position = Vector2( 32, 0 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 
