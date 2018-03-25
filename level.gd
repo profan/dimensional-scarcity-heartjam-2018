@@ -2,6 +2,7 @@ extends Node2D
 
 onready var level_map = get_node("level_map")
 onready var modulator = get_node("modulator")
+onready var ui_modulator = get_node("canvas/ui_mod")
 onready var mod_tween = get_node("mod_tween")
 
 var from_scene_name = false
@@ -18,6 +19,7 @@ func _ready():
 	modulator.color.a = 0
 	mod_tween.connect("tween_completed", self, "_on_mod_tween_load_end")
 	mod_tween.interpolate_property(modulator, "color", Color(1, 1, 1, 0), Color(1, 1, 1, 1), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	mod_tween.interpolate_property(ui_modulator, "color", Color(1, 1, 1, 0), Color(1, 1, 1, 1), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.start()
 
 func _on_mod_tween_load_end():
@@ -28,6 +30,7 @@ func _on_mod_tween_end_level():
 	
 func end_level():
 	mod_tween.interpolate_property(modulator, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	mod_tween.interpolate_property(ui_modulator, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.start()
 
 func on_load_level():
