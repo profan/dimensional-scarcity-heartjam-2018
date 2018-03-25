@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://level.gd" type="Script" id=1]
 [ext_resource path="res://tile_set.tres" type="TileSet" id=2]
 [ext_resource path="res://level_map.gd" type="Script" id=3]
-[ext_resource path="res://platform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ui.tscn" type="PackedScene" id=6]
+[ext_resource path="res://goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui.tscn" type="PackedScene" id=7]
 
 [node name="level" type="Node2D" index="0"]
 
@@ -51,52 +52,39 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0 )
+tile_data = PoolIntArray( 131077, 0, 0, 196613, 0, 0, 589831, 0, 0, 589832, 0, 0 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="goals" type="Node2D" parent="." index="2"]
 
-[node name="goal1" type="Area2D" parent="goals" index="0"]
+[node name="goal" parent="goals" index="0" instance=ExtResource( 4 )]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+[node name="goal2" parent="goals" index="1" instance=ExtResource( 4 )]
 
-[node name="goal2" type="Area2D" parent="goals" index="1"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+position = Vector2( 352, 96 )
+rotation = 1.5708
 
 [node name="platforms" type="Node2D" parent="." index="3"]
 
-[node name="platform1" parent="platforms" index="0" instance=ExtResource( 4 )]
+[node name="platform1" parent="platforms" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 352, 608 )
 scale = Vector2( 2, 2 )
 orientation = 0
 
-[node name="player1" parent="platforms/platform1" index="4" instance=ExtResource( 5 )]
+[node name="player1" parent="platforms/platform1" index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 0, -32 )
 orientation = 0
 
-[node name="platform2" parent="platforms" index="1" instance=ExtResource( 4 )]
+[node name="platform2" parent="platforms" index="1" instance=ExtResource( 5 )]
 
 position = Vector2( 352, 352 )
 scale = Vector2( 2, 2 )
 orientation = 0
 
-[node name="player2" parent="platforms/platform2" index="5" instance=ExtResource( 5 )]
+[node name="player2" parent="platforms/platform2" index="5" instance=ExtResource( 6 )]
 
 position = Vector2( -0.0113525, -32 )
 orientation = 3
@@ -109,6 +97,6 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="ui" parent="canvas" index="0" instance=ExtResource( 6 )]
+[node name="ui" parent="canvas" index="0" instance=ExtResource( 7 )]
 
 
