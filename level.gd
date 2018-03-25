@@ -11,6 +11,8 @@ var from_scene_name = false
 var next_scene_name = false
 var SCENE_SWITCH_TIME = 0.5
 
+var tweens_done = 0
+
 func _ready():
 	
 	Game.connect("on_level_end", self, "_on_end_level")
@@ -29,8 +31,9 @@ func _ready():
 	if next_level: next_scene_name = "res://levels/%s.tscn" % next_level
 
 func _on_mod_tween_load_end(obj, key):
-	mod_tween.stop_all()
-	mod_tween.connect("tween_completed", self, "_on_mod_tween_end_level")
+	tweens_done += 1
+	if tweens_done == 2:
+		mod_tween.connect("tween_completed", self, "_on_mod_tween_end_level")
 
 func _on_mod_tween_end_level(obj, key):
 	
