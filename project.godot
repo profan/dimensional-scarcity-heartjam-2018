@@ -49,4 +49,5 @@ mouse_right=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"reso
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.607843, 0.737255, 0.0588235, 1 )
 environment/default_environment="res://default_env.tres"
