@@ -26,15 +26,18 @@ func _ready():
 	mod_tween.interpolate_property(ui_modulator, "color", Color(1, 1, 1, 0), Color(1, 1, 1, 1), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.start()
 	
-	next_scene_name = "res://levels/%s.tscn" % next_level
-	
+	if next_level: next_scene_name = "res://levels/%s.tscn" % next_level
 
 func _on_mod_tween_load_end(obj, key):
 	mod_tween.stop_all()
 	mod_tween.connect("tween_completed", self, "_on_mod_tween_end_level")
 
 func _on_mod_tween_end_level(obj, key):
-	SceneSwitcher.goto_scene(next_scene_name)
+	
+	if next_scene_name:
+		SceneSwitcher.goto_scene(next_scene_name)
+	else:
+		SceneSwitcher.goto_scene("res://main_menu.tscn")
 	
 func _on_end_level():
 	mod_tween.interpolate_property(modulator, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
