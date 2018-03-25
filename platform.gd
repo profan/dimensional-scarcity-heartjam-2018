@@ -62,7 +62,7 @@ func _on_body_enter_left(b):
 	if b.type() == "player" and (b.get_parent().type() != "platform" or not b.current_side):
 		b.current_side = "left"
 		print("ENTERO LEFT")
-		if get_child_count() != 8:
+		if get_child_count() >= 7:
 			b.connect("before_player_finished_move", self, "_before_player_finished_moving", [], CONNECT_ONESHOT)
 			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
 
@@ -80,7 +80,7 @@ func _on_body_enter_right(b):
 	if b.type() == "player" and (b.get_parent().type() != "platform" or not b.current_side):
 		b.current_side = "right"
 		print("ENTERO RIGHT")
-		if get_child_count() != 8:
+		if get_child_count() >= 7:
 			b.connect("before_player_finished_move", self, "_before_player_finished_moving", [], CONNECT_ONESHOT)
 			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
 
