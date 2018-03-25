@@ -73,7 +73,7 @@ func switch_players():
 		var p = players[pid]
 		if p.is_selected:
 			p._on_deselect()
-		elif not one_selected:
+		elif not one_selected and not p.has_reached_goal:
 			p._on_select()
 			one_selected = true
 

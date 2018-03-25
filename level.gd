@@ -54,6 +54,8 @@ func _on_mod_tween_fade_title_out(obj, key):
 
 func _on_mod_tween_end_level(obj, key):
 	
+	Game.reset_level()
+	
 	if next_scene_name:
 		SceneSwitcher.goto_scene(next_scene_name)
 	else:

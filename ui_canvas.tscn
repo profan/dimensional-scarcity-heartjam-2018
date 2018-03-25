@@ -3,7 +3,7 @@
 [ext_resource path="res://main_menu_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui.tscn" type="PackedScene" id=2]
 
-[node name="canvas" type="CanvasLayer" index="0"]
+[node name="canvas" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
