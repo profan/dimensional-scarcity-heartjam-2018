@@ -63,6 +63,7 @@ func _on_body_enter_left(b):
 		b.current_side = "left"
 		print("ENTERO LEFT")
 		if get_child_count() != 8:
+			b.connect("before_player_finished_move", self, "_before_player_finished_moving", [], CONNECT_ONESHOT)
 			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
 
 func _on_body_exit_left(b):
@@ -72,13 +73,22 @@ func _on_body_exit_left(b):
 		print("EXIT LEFT")
 		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
 			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
+		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
+			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
 
 func _on_body_enter_right(b):
 	if b.type() == "player" and (b.get_parent().type() != "platform" and not b.current_side):
 		b.current_side = "right"
 		print("ENTERO RIGHT")
 		if get_child_count() != 8:
+			b.connect("before_player_finished_move", self, "_before_player_finished_moving", [], CONNECT_ONESHOT)
 			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
+
+func _before_player_finished_moving(p):
+	if p.current_side == "left":
+		p.movement_direction = p.Order.MOVE_RIGHT
+	elif p.current_side == "right":
+		p.movement_direction = p.Order.MOVE_LEFT
 
 func _on_player_finished_moving(p, tn):
 	var g_pos = p.global_position
@@ -94,6 +104,8 @@ func _on_body_exit_right(b):
 		print("EXIT RIGHT")
 		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
 			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
+		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
+			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
 
 func _on_platform_rotation_end(obj, key):
 	orientation = _degrees_to_orientation(rotation_degrees)

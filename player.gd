@@ -57,6 +57,7 @@ var do_crouch = false
 var MOVE_TIME = 0.5
 var map
 
+signal before_player_finished_move(p)
 signal player_finished_move(p, tn)
 
 # debug
@@ -145,6 +146,7 @@ func _on_tween_done(obj, key):
 	if get_parent().type() != "platform":
 		movement_direction = Order.MOVE_NONE
 	
+	emit_signal("before_player_finished_move", self)
 	emit_signal("player_finished_move", self, Game.turn_number)
 	movement_direction = Order.MOVE_NONE
 	tween.stop_all()
