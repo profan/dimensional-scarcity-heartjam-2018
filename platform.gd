@@ -59,7 +59,7 @@ func _on_body_enter_platform(b):
 		b.do_crouch()
 
 func _on_body_enter_left(b):
-	if b.type() == "player" and (b.get_parent().type() != "platform" and not b.current_side):
+	if b.type() == "player" and (b.get_parent().type() != "platform" or not b.current_side):
 		b.current_side = "left"
 		print("ENTERO LEFT")
 		if get_child_count() != 8:
@@ -77,7 +77,7 @@ func _on_body_exit_left(b):
 			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
 
 func _on_body_enter_right(b):
-	if b.type() == "player" and (b.get_parent().type() != "platform" and not b.current_side):
+	if b.type() == "player" and (b.get_parent().type() != "platform" or not b.current_side):
 		b.current_side = "right"
 		print("ENTERO RIGHT")
 		if get_child_count() != 8:

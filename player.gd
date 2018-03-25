@@ -66,6 +66,7 @@ var debug_pos
 
 # to other platform moving
 var other_platform_infront = false
+var other_platform_dir = 0
 
 func _ready():
 	
@@ -89,10 +90,12 @@ func _ready():
 func _on_front_area_entered(a):
 	if a.get_parent().type() == "platform":
 		other_platform_infront = true
+		other_platform_dir = scale.x
 
 func _on_front_area_exited(a):
 	if a.get_parent().type() == "platform":
 		other_platform_infront = false
+		other_platform_dir = 0
 
 func _after_ready():
 	map = Game.get_map()
@@ -224,7 +227,7 @@ func _give_order(o):
 					print("MOVAN TILE RIGHTO")
 					movement_direction = Order.MOVE_LEFT
 					sprite.frame = 1
-				elif other_platform_infront:
+				elif other_platform_infront and other_platform_dir == 1:
 					print("MOVAN PLATFORM RIGHTO")
 					movement_direction = Order.MOVE_LEFT
 					sprite.frame = 1
@@ -244,6 +247,11 @@ func _give_order(o):
 					if get_parent().orientation == Orientation.LEFT:
 						left_above_pos.x -= 16
 						left_pos.x -= 16
+					elif get_parent().orientation == Orientation.RIGHT:
+						left_above_pos.x += 16
+						left_pos.x += 16
+						left_above_pos.y += 16
+						left_pos.y += 16
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
 					# reparent to tilemap or new platform
@@ -265,7 +273,7 @@ func _give_order(o):
 					print("MOVAN TILE LEFTO")
 					movement_direction = Order.MOVE_RIGHT
 					sprite.frame = 1
-				elif other_platform_infront:
+				elif other_platform_infront  and other_platform_dir == -1:
 					print("MOVAN PLATFORM LEFTO")
 					movement_direction = Order.MOVE_RIGHT
 					sprite.frame = 1
