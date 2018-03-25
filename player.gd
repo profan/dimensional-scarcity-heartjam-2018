@@ -167,8 +167,12 @@ func _on_end_turn_start():
 			var move_vec
 			match [movement_direction, orientation]:
 				[MOVE_LEFT, UP], [MOVE_RIGHT, UP]: move_vec = _order_to_vec(movement_direction)
-				[MOVE_LEFT, DOWN], [MOVE_RIGHT, DOWN]: move_vec = _order_to_vec(movement_direction)
-				[MOVE_LEFT, LEFT], [MOVE_RIGHT, LEFT]: move_vec = _order_to_vec_side(movement_direction)
+				[MOVE_LEFT, DOWN], [MOVE_RIGHT, DOWN]: 
+					move_vec = _order_to_vec(movement_direction)
+					move_vec.x = -move_vec.x
+				[MOVE_LEFT, LEFT], [MOVE_RIGHT, LEFT]: 
+					move_vec = _order_to_vec_side(movement_direction)
+					move_vec.y = -move_vec.y
 				[MOVE_LEFT, RIGHT], [MOVE_RIGHT, RIGHT]: move_vec = _order_to_vec_side(movement_direction)
 			move_delta = move_vec * 32
 		tween.interpolate_property(self, "position", position, position + move_delta, MOVE_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -241,6 +245,9 @@ func _give_order(o):
 					movement_direction = Order.MOVE_NONE
 					var left_above_pos = position + Vector2(64, 16)
 					var left_pos = position + Vector2(64, 48)
+					if get_parent().orientation == Orientation.LEFT:
+						left_above_pos.x -= 16
+						left_pos.x -= 16
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
 					debug_pos_above = g_above_pos
