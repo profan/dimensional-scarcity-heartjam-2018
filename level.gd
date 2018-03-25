@@ -25,7 +25,8 @@ func _ready():
 	Game.start_level()
 	
 	modulator.color.a = 0
-	mod_tween.connect("tween_completed", self, "_on_mod_tween_load_end", [], CONNECT_ONESHOT)
+	level_title_label.modulate.a = 0
+	mod_tween.connect("tween_completed", self, "_on_mod_tween_load_end")
 	mod_tween.interpolate_property(modulator, "color", Color(1, 1, 1, 0), Color(1, 1, 1, 1), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.interpolate_property(ui_modulator, "color", Color(1, 1, 1, 0), Color(1, 1, 1, 1), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.start()
@@ -35,9 +36,12 @@ func _ready():
 	if next_level: next_scene_name = "res://levels/%s.tscn" % next_level
 
 func _on_mod_tween_load_end(obj, key):
-	mod_tween.interpolate_property(level_title_label, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), SCENE_SWITCH_TIME * 2, Tween.TRANS_CUBIC,Tween.EASE_IN)
-	mod_tween.connect("tween_completed", self, "_on_mod_tween_fade_title_in", [], CONNECT_ONESHOT)
-	mod_tween.start()
+	tweens_done += 1;
+	if tweens_done == 2:
+		mod_tween.disconnect("tween_completed", self, "_on_mod_tween_load_end")
+		mod_tween.interpolate_property(level_title_label, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), SCENE_SWITCH_TIME * 2, Tween.TRANS_CUBIC,Tween.EASE_IN)
+		mod_tween.connect("tween_completed", self, "_on_mod_tween_fade_title_in", [], CONNECT_ONESHOT)
+		mod_tween.start()
 
 func _on_mod_tween_fade_title_in(obj, key):
 	print("YAH")
@@ -56,6 +60,7 @@ func _on_mod_tween_end_level(obj, key):
 		SceneSwitcher.goto_scene("res://main_menu.tscn")
 	
 func _on_end_level():
+	mod_tween.connect("tween_completed", self, "_on_mod_tween_end_level")
 	mod_tween.interpolate_property(modulator, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.interpolate_property(ui_modulator, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.start()
