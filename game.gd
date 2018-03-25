@@ -22,7 +22,7 @@ var players = {}
 var cur_map
 
 func _ready():
-	plat_timer.wait_time = 1 # HACK HARDCODED FIXME
+	plat_timer.wait_time = 0.2 # HACK HARDCODED FIXME
 	plat_timer.connect("timeout", self, "_on_plat_rotation_done")
 
 func _on_plat_rotation_done():

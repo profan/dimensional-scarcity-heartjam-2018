@@ -83,6 +83,7 @@ func _ready():
 	
 	# connect to turn stuff
 	Game.connect("on_level_step_start", self, "_on_end_turn_start")
+	Game.connect("on_level_step_end_rot", self, "_on_step_rot_end")
 	tween.connect("tween_completed", self, "_on_tween_done")
 	timer.connect("timeout", self, "_on_end_timer_done")
 	front_area.connect("area_entered", self, "_on_front_area_entered")
@@ -187,6 +188,7 @@ func _on_end_turn_start():
 		tween.interpolate_property(self, "position", position, position + move_delta, MOVE_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		sprite.frame = 0
 		tween.start()
+		can_move = false
 
 func _on_player_selected(p):
 	if p == self: return
@@ -359,12 +361,6 @@ func _on_select():
 func _on_deselect():
 	is_selected = false
 	selector.visible = false
-
-func _on_step_start():
-	can_move = false
-
-func _on_step_end():
-	pass
 
 func _on_step_rot_end():
 	can_move = true
