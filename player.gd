@@ -57,7 +57,7 @@ var do_crouch = false
 var MOVE_TIME = 0.5
 var map
 
-signal player_finished_move(p)
+signal player_finished_move(p, tn)
 
 # debug
 var debug_pos_above
@@ -204,9 +204,6 @@ func _give_order(o):
 					var right_pos = position + Vector2(16, 64)
 					var g_above_pos = to_global(right_above_pos)
 					var g_pos = to_global(right_pos)
-					debug_pos_above = g_above_pos
-					debug_pos = g_pos
-					update()
 					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
 						print("MOVAN RIGHTAN")
@@ -221,9 +218,6 @@ func _give_order(o):
 				var right_pos = global_position + Vector2(64, 64).rotated(rotation)
 				var g_above_pos = right_above_pos
 				var g_pos = right_pos
-				debug_pos_above = g_above_pos
-				debug_pos = g_pos
-				update()
 				if not map.pos_has_tile_local(g_above_pos) and map.pos_has_tile_local(g_pos):
 					print("MOVAN TILE RIGHTO")
 					movement_direction = Order.MOVE_LEFT
@@ -250,9 +244,6 @@ func _give_order(o):
 						left_pos.x -= 16
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
-					debug_pos_above = g_above_pos
-					debug_pos = g_pos
-					update()
 					# reparent to tilemap or new platform
 					if not map.pos_has_tile(g_above_pos) and map.pos_has_tile(g_pos):
 						print("MOVAN LEFTAN")
