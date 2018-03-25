@@ -258,6 +258,9 @@ func _give_order(o):
 						left_pos.x += 16
 						left_above_pos.y += 16
 						left_pos.y += 16
+					elif get_parent().orientation == Orientation.DOWN:
+						left_above_pos.y += 16
+						left_pos.y += 16
 					var g_above_pos = to_global(left_above_pos)
 					var g_pos = to_global(left_pos)
 					# reparent to tilemap or new platform
