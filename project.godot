@@ -22,7 +22,7 @@ Game="*res://game.tscn"
 [display]
 
 window/size/width=960
-window/size/height=720
+window/size/height=768
 window/size/resizable=false
 
 [input]

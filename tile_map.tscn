@@ -35,4 +35,22 @@ position = Vector2( 16, 16 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="border_tile" type="Sprite" parent="." index="1"]
+
+position = Vector2( 96, 32 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 171, 1, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="corner_border_tile" type="Sprite" parent="." index="2"]
+
+position = Vector2( 160, 32 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 205, 1, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
 
