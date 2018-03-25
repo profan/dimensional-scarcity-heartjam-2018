@@ -34,7 +34,7 @@ func _input(event):
 		if event.is_action_pressed("player_switch"):
 			Game.switch_players()
 		elif event.is_action_pressed("ui_cancel"):
-			menu_panel.visible = true
+			menu_panel.visible = !menu_panel.visible
 
 func _unhandled_input(event):
 	if event is InputEventKey:
