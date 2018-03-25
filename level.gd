@@ -2,6 +2,8 @@ extends Node2D
 
 onready var level_map = get_node("level_map")
 
+var from_scene_name = false
+
 func _ready():
 	
 	Game.set_map(self)

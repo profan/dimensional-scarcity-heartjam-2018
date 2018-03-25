@@ -2,7 +2,7 @@
 
 [ext_resource path="res://main_menu.gd" type="Script" id=1]
 
-[node name="main_menu" type="Control"]
+[node name="main_menu" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -40,7 +40,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 97.0
+margin_right = 72.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -53,7 +53,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Enter"
+text = "Start"
 flat = false
 align = 1
 
@@ -64,7 +64,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 24.0
-margin_right = 97.0
+margin_right = 72.0
 margin_bottom = 44.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -88,7 +88,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 48.0
-margin_right = 97.0
+margin_right = 72.0
 margin_bottom = 68.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -101,7 +101,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Exit Realm"
+text = "Quit"
 flat = false
 align = 1
 

@@ -307,6 +307,8 @@ func _input(event):
 				_give_order(Order.MOVE_RIGHT)
 			elif event.is_action_pressed("player_move_right"):
 				_give_order(Order.MOVE_LEFT)
+			elif event.is_action_pressed("player_move_none"):
+				_give_order(Order.MOVE_NONE)
 		elif event is InputEventMouseButton:
 			if event.is_action_pressed("mouse_left"):
 				_on_deselect()
