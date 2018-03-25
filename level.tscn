@@ -52,7 +52,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 131077, 0, 0, 196613, 0, 0, 589831, 0, 0, 589832, 0, 0 )
+tile_data = PoolIntArray( 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Transform" ]
 
@@ -70,13 +70,14 @@ rotation = 1.5708
 [node name="platform1" parent="platforms" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 352, 608 )
+rotation = 3.14159
 scale = Vector2( 2, 2 )
-orientation = 0
+orientation = 1
 
 [node name="player1" parent="platforms/platform1" index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 0, -32 )
-orientation = 0
+orientation = 1
 
 [node name="platform2" parent="platforms" index="1" instance=ExtResource( 5 )]
 

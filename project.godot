@@ -19,6 +19,12 @@ config/icon="res://icon.png"
 SceneSwitcher="*res://scene_switcher.gd"
 Game="*res://game.tscn"
 
+[display]
+
+window/size/width=960
+window/size/height=720
+window/size/resizable=false
+
 [input]
 
 move_up=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
