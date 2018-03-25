@@ -95,7 +95,16 @@ orientation = 3
 
 color = Color( 1, 1, 1, 1 )
 
-[node name="canvas" type="CanvasLayer" parent="." index="5"]
+[node name="mod_tween" type="Tween" parent="." index="5"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="canvas" type="CanvasLayer" parent="." index="6"]
 
 layer = 1
 offset = Vector2( 0, 0 )
