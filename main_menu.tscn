@@ -1,7 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main_menu.gd" type="Script" id=1]
 [ext_resource path="res://main_menu_font.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxLine" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+grow = 1.0
+thickness = 8
+vertical = false
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -48,6 +59,45 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
 
+[node name="title_sep" type="HSeparator" parent="title" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = 36.0
+margin_right = 396.0
+margin_bottom = 5.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+custom_styles/separator = SubResource( 2 )
+_sections_unfolded = [ "Anchor", "Rect", "Size Flags", "custom_styles" ]
+
+[node name="title_sep2" type="HSeparator" parent="title" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 219.0
+margin_top = -28.0
+margin_right = 319.0
+margin_bottom = -59.0
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+custom_styles/separator = SubResource( 2 )
+_sections_unfolded = [ "Anchor", "Rect", "Size Flags", "custom_styles" ]
+
 [node name="buttons" type="VBoxContainer" parent="." index="1"]
 
 anchor_left = 0.5
@@ -83,7 +133,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/focus = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -111,7 +161,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/focus = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -139,7 +189,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/focus = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -167,7 +217,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/focus = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

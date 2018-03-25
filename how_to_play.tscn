@@ -38,14 +38,14 @@ _sections_unfolded = [ "Mouse", "Size Flags" ]
 
 [node name="title" type="Label" parent="." index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 352.0
-margin_top = 128.0
-margin_right = 594.0
-margin_bottom = 163.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -288.0
+margin_right = 170.0
+margin_bottom = -253.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -55,6 +55,7 @@ size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 text = "How to Play"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -94,7 +95,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 text = "mouse controls"
 align = 1
 percent_visible = 1.0
@@ -120,7 +121,7 @@ size_flags_vertical = 1
 custom_styles/separator = SubResource( 1 )
 _sections_unfolded = [ "Theme", "custom_constants", "custom_styles" ]
 
-[node name="select" type="Label" parent="keys" index="2"]
+[node name="select_cont" type="HBoxContainer" parent="keys" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -131,20 +132,61 @@ margin_right = 593.0
 margin_bottom = 82.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="select" type="Label" parent="keys/select_cont" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 104.0
+margin_right = 265.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
-text = "select: mouse left"
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "select: "
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="move" type="Label" parent="keys" index="3"]
+[node name="select2" type="Label" parent="keys/select_cont" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 269.0
+margin_right = 489.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "mouse left"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="move_cont" type="HBoxContainer" parent="keys" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -155,20 +197,61 @@ margin_right = 593.0
 margin_bottom = 121.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="move" type="Label" parent="keys/move_cont" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 122.0
+margin_right = 239.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
-text = "move: mouse right"
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "move: "
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="move2" type="Label" parent="keys" index="4"]
+[node name="move2" type="Label" parent="keys/move_cont" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 243.0
+margin_right = 470.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "mouse right"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="keyboard_ctrls" type="Label" parent="keys" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -184,30 +267,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
-
-[node name="keyboard_ctrls" type="Label" parent="keys" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 164.0
-margin_right = 593.0
-margin_bottom = 199.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 text = "keyboard controls"
 align = 1
 percent_visible = 1.0
@@ -215,15 +275,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="keyboard_sep" type="HSeparator" parent="keys" index="6"]
+[node name="keyboard_sep" type="HSeparator" parent="keys" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 203.0
+margin_top = 164.0
 margin_right = 593.0
-margin_bottom = 207.0
+margin_bottom = 168.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -232,7 +292,72 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/separator = SubResource( 1 )
 
-[node name="change_char" type="Label" parent="keys" index="7"]
+[node name="change_cont" type="HBoxContainer" parent="keys" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 172.0
+margin_right = 593.0
+margin_bottom = 207.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="change_char" type="Label" parent="keys/change_cont" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 78.0
+margin_right = 444.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "switch character: "
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="change_char2" type="Label" parent="keys/change_cont" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 448.0
+margin_right = 514.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "tab"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="move_left_cont" type="HBoxContainer" parent="keys" index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -243,20 +368,61 @@ margin_right = 593.0
 margin_bottom = 246.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="move_left" type="Label" parent="keys/move_left_cont" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 49.0
+margin_right = 276.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
-text = "switch character: TAB"
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "move left: "
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="move_left" type="Label" parent="keys" index="8"]
+[node name="move_left2" type="Label" parent="keys/move_left_cont" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 280.0
+margin_right = 544.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "A/left arrow"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="move_right_cont" type="HBoxContainer" parent="keys" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -267,20 +433,61 @@ margin_right = 593.0
 margin_bottom = 285.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="move_right" type="Label" parent="keys/move_right_cont" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 42.0
+margin_right = 276.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
-text = "move left: A/Left Arrow"
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "move right: "
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="move_right" type="Label" parent="keys" index="9"]
+[node name="move_right2" type="Label" parent="keys/move_right_cont" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 280.0
+margin_right = 551.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "D/right arrow"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="end_turn_cont" type="HBoxContainer" parent="keys" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -291,28 +498,45 @@ margin_right = 593.0
 margin_bottom = 324.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="end_turn" type="Label" parent="keys/end_turn_cont" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 137.0
+margin_right = 342.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
-text = "move right: d/right arrow"
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "end turn: "
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="end_turn" type="Label" parent="keys" index="10"]
+[node name="end_turn2" type="Label" parent="keys/end_turn_cont" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 328.0
-margin_right = 593.0
-margin_bottom = 363.0
+margin_left = 346.0
+margin_right = 456.0
+margin_bottom = 35.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -321,7 +545,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
-text = "end turn: space"
+text = "space"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
