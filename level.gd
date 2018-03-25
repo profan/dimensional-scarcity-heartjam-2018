@@ -67,6 +67,15 @@ func _on_end_level():
 	mod_tween.interpolate_property(ui_modulator, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), SCENE_SWITCH_TIME, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	mod_tween.start()
 
+func _input(event):
+	if event is InputEventKey:
+		if event.is_action_pressed("reset_level"):
+			Game.reset_level()
+			reload_level()
+
+func reload_level():
+	SceneSwitcher.goto_scene(filename)
+
 func on_load_level():
 	pass
 

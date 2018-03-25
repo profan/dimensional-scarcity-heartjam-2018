@@ -43,9 +43,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -288.0
+margin_top = -338.0
 margin_right = 170.0
-margin_bottom = -253.0
+margin_bottom = -303.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -67,10 +67,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -296.5
-margin_top = -201.0
-margin_right = 296.5
-margin_bottom = 201.0
+margin_left = -297.0
+margin_top = -265.0
+margin_right = 296.0
+margin_bottom = 223.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -251,7 +251,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="keyboard_ctrls" type="Label" parent="keys" index="4"]
+[node name="spacer1" type="Control" parent="keys" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -259,7 +259,25 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 125.0
 margin_right = 593.0
-margin_bottom = 160.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 0, 8 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="keyboard_ctrls" type="Label" parent="keys" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 137.0
+margin_right = 593.0
+margin_bottom = 172.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -275,15 +293,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="keyboard_sep" type="HSeparator" parent="keys" index="5"]
+[node name="keyboard_sep" type="HSeparator" parent="keys" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 164.0
+margin_top = 176.0
 margin_right = 593.0
-margin_bottom = 168.0
+margin_bottom = 180.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -292,15 +310,15 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/separator = SubResource( 1 )
 
-[node name="change_cont" type="HBoxContainer" parent="keys" index="6"]
+[node name="change_cont" type="HBoxContainer" parent="keys" index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 172.0
+margin_top = 184.0
 margin_right = 593.0
-margin_bottom = 207.0
+margin_bottom = 219.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -357,15 +375,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="move_left_cont" type="HBoxContainer" parent="keys" index="7"]
+[node name="move_left_cont" type="HBoxContainer" parent="keys" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 211.0
+margin_top = 223.0
 margin_right = 593.0
-margin_bottom = 246.0
+margin_bottom = 258.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -422,15 +440,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="move_right_cont" type="HBoxContainer" parent="keys" index="8"]
+[node name="move_right_cont" type="HBoxContainer" parent="keys" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 250.0
+margin_top = 262.0
 margin_right = 593.0
-margin_bottom = 285.0
+margin_bottom = 297.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -487,15 +505,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="cancel_move_cont" type="HBoxContainer" parent="keys" index="9"]
+[node name="cancel_move_cont" type="HBoxContainer" parent="keys" index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 289.0
+margin_top = 301.0
 margin_right = 593.0
-margin_bottom = 324.0
+margin_bottom = 336.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -552,15 +570,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="pause_menu_cont" type="HBoxContainer" parent="keys" index="10"]
+[node name="pause_menu_cont" type="HBoxContainer" parent="keys" index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 328.0
+margin_top = 340.0
 margin_right = 593.0
-margin_bottom = 363.0
+margin_bottom = 375.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -617,15 +635,75 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
-[node name="end_turn_cont" type="HBoxContainer" parent="keys" index="11"]
+[node name="spacer2" type="Control" parent="keys" index="12"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 367.0
+margin_top = 379.0
 margin_right = 593.0
-margin_bottom = 402.0
+margin_bottom = 387.0
+rect_min_size = Vector2( 0, 8 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="util_ctrls" type="Label" parent="keys" index="13"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 391.0
+margin_right = 593.0
+margin_bottom = 426.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "Utility controls"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="util_sep" type="HSeparator" parent="keys" index="14"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 430.0
+margin_right = 593.0
+margin_bottom = 434.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/separator = SubResource( 1 )
+
+[node name="end_turn_cont" type="HBoxContainer" parent="keys" index="15"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 438.0
+margin_right = 593.0
+margin_bottom = 473.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -682,14 +760,79 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
 
+[node name="reset_level_cont" type="HBoxContainer" parent="keys" index="16"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 477.0
+margin_right = 593.0
+margin_bottom = 512.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="reset_level" type="Label" parent="keys/reset_level_cont" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 148.0
+margin_right = 419.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "reset level: "
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
+[node name="reset_level2" type="Label" parent="keys/reset_level_cont" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 423.0
+margin_right = 445.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "R"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors", "custom_fonts" ]
+
 [node name="back_btn" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -116.0
-margin_bottom = -75.0
+margin_top = -90.0
+margin_bottom = -49.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
