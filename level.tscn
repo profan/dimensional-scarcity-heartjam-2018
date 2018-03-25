@@ -7,7 +7,7 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui.tscn" type="PackedScene" id=6]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -81,6 +81,13 @@ orientation = 0
 
 position = Vector2( -0.0113525, -32 )
 orientation = 3
+
+[node name="platform3" parent="platforms" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 288, 224 )
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+orientation = 0
 
 [node name="canvas" type="CanvasLayer" parent="." index="3"]
 

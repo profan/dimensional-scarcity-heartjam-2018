@@ -59,7 +59,7 @@ func _on_body_enter_platform(b):
 		b.do_crouch()
 
 func _on_body_enter_left(b):
-	if b.type() == "player":
+	if b.type() == "player" and (b.get_parent().type() != "platform" and not b.current_side):
 		b.current_side = "left"
 		print("ENTERO LEFT")
 		if get_child_count() != 8:
@@ -70,9 +70,11 @@ func _on_body_exit_left(b):
 		b.current_side = null
 		b.last_side = "left"
 		print("EXIT LEFT")
+		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
+			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
 
 func _on_body_enter_right(b):
-	if b.type() == "player":
+	if b.type() == "player" and (b.get_parent().type() != "platform" and not b.current_side):
 		b.current_side = "right"
 		print("ENTERO RIGHT")
 		if get_child_count() != 8:
@@ -90,6 +92,8 @@ func _on_body_exit_right(b):
 		b.current_side = null
 		b.last_side = "right"
 		print("EXIT RIGHT")
+		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
+			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
 
 func _on_platform_rotation_end(obj, key):
 	orientation = _degrees_to_orientation(rotation_degrees)
