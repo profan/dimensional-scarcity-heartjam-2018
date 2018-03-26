@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://level.gd" type="Script" id=1]
+[ext_resource path="res://tile_set.tres" type="TileSet" id=2]
+[ext_resource path="res://level_map.gd" type="Script" id=3]
+[ext_resource path="res://goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui_canvas.tscn" type="PackedScene" id=7]
+
+[node name="level" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+next_level = null
+level_title = "Boxed In"
+
+[node name="bg_map" type="TileMap" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 0, -1073741822, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 2, 0, 65536, -1073741823, 0, 65550, -1610612735, 0, 131072, -1073741823, 0, 131086, -1610612735, 0, 196608, -1073741823, 0, 196622, -1610612735, 0, 262144, -1073741823, 0, 262158, -1610612735, 0, 327680, -1073741823, 0, 327694, -1610612735, 0, 393216, -1073741823, 0, 393230, -1610612735, 0, 458752, -1073741823, 0, 458766, -1610612735, 0, 524288, -1073741823, 0, 524302, -1610612735, 0, 589824, -1073741823, 0, 589838, -1610612735, 0, 655360, -1073741823, 0, 655374, -1610612735, 0, 720896, 1610612738, 0, 720897, 1610612737, 0, 720898, 1610612737, 0, 720899, 1610612737, 0, 720900, 1610612737, 0, 720901, 1610612737, 0, 720902, 1610612737, 0, 720903, 1610612737, 0, 720904, 1610612737, 0, 720905, 1610612737, 0, 720906, 1610612737, 0, 720907, 1610612737, 0, 720908, 1610612737, 0, 720909, 1610612737, 0, 720910, -1610612734, 0 )
+_sections_unfolded = [ "Cell", "Transform" ]
+
+[node name="level_map" type="TileMap" parent="." index="1"]
+
+scale = Vector2( 2, 2 )
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Cell", "Transform" ]
+
+[node name="goals" type="Node2D" parent="." index="2"]
+
+[node name="goal" parent="goals" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( 416, 608 )
+
+[node name="goal2" parent="goals" index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 544, 416 )
+
+[node name="platforms" type="Node2D" parent="." index="3"]
+
+[node name="platform1" parent="platforms" index="0" instance=ExtResource( 5 )]
+
+position = Vector2( 160, 224 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+orientation = 2
+
+[node name="player1" parent="platforms/platform1" index="7" instance=ExtResource( 6 )]
+
+position = Vector2( -1.52588e-05, -31.9808 )
+orientation = 1
+
+[node name="platform2" parent="platforms" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 160, 416.038 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+orientation = 3
+
+[node name="platform3" parent="platforms" index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 160, 608.836 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+orientation = 2
+
+[node name="platform6" parent="platforms" index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 800, 416.038 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+orientation = 2
+
+[node name="platform5" parent="platforms" index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 800, 608.836 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+orientation = 3
+
+[node name="player2" parent="platforms/platform5" index="7" instance=ExtResource( 6 )]
+
+position = Vector2( 0, -32.4181 )
+orientation = 1
+
+[node name="modulator" type="CanvasModulate" parent="." index="4"]
+
+color = Color( 1, 1, 1, 1 )
+
+[node name="mod_tween" type="Tween" parent="." index="5"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="canvas" parent="." index="6" instance=ExtResource( 7 )]
+
+

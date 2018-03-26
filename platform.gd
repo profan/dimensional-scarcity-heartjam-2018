@@ -67,7 +67,7 @@ func _on_body_enter_left(b):
 			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
 
 func _on_body_exit_left(b):
-	if b.type() == "player":
+	if b.type() == "player" and b.get_parent() == self:
 		b.current_side = null
 		b.last_side = "left"
 		print("EXIT LEFT")
@@ -85,7 +85,7 @@ func _on_body_enter_right(b):
 			b.connect("player_finished_move", self, "_on_player_finished_moving", [], CONNECT_ONESHOT)
 
 func _on_body_exit_right(b):
-	if b.type() == "player":
+	if b.type() == "player" and b.get_parent() == self:
 		b.current_side = null
 		b.last_side = "right"
 		print("EXIT RIGHT")

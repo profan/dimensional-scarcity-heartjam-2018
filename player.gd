@@ -307,7 +307,7 @@ func _give_order(o):
 					print("MOVAN TILE LEFTO")
 					movement_direction = Order.MOVE_RIGHT
 					sprite.frame = 1
-				elif other_platform_infront  and other_platform_dir == -1:
+				elif other_platform_infront and other_platform_dir == -1:
 					var p_or = _get_orientation()
 					if other_platform_infront_ref.orientation == _get_orientation():
 						print("MOVAN PLATFORM LEFTO 2")
