@@ -382,6 +382,9 @@ func _physics_process(delta):
 func reached_goal():
 	has_reached_goal = true
 	Game.player_reached_goal(self)
+	coll.disabled = true
+	front_area.monitoring = false
+	front_area.monitorable = false
 
 func _on_select():
 	Game.select_player(self)

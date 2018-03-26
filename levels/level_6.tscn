@@ -8,12 +8,12 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui_canvas.tscn" type="PackedScene" id=7]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-next_level = "level_6"
-level_title = "Boxed In"
+next_level = null
+level_title = "Signed in Triplicate"
 
 [node name="bg_map" type="TileMap" parent="." index="0"]
 
@@ -56,7 +56,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0 )
+tile_data = PoolIntArray( 393222, -1073741824, 0, 458758, -1073741824, 0, 524294, -1073741824, 0 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Transform" ]
 
@@ -64,20 +64,16 @@ _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="goal" parent="goals" index="0" instance=ExtResource( 4 )]
 
-position = Vector2( 416, 608 )
-
-[node name="goal2" parent="goals" index="1" instance=ExtResource( 4 )]
-
-position = Vector2( 544, 416 )
+position = Vector2( 416, 544 )
+rotation = 1.5708
 
 [node name="platforms" type="Node2D" parent="." index="3"]
 
 [node name="platform1" parent="platforms" index="0" instance=ExtResource( 5 )]
 
-position = Vector2( 160, 224 )
-rotation = -1.5708
+position = Vector2( 224, 288 )
 scale = Vector2( 2, 2 )
-orientation = 2
+orientation = 0
 
 [node name="player1" parent="platforms/platform1" index="7" instance=ExtResource( 6 )]
 
@@ -86,36 +82,37 @@ orientation = 1
 
 [node name="platform2" parent="platforms" index="1" instance=ExtResource( 5 )]
 
-position = Vector2( 160, 416.038 )
-rotation = 1.5708
+position = Vector2( 608, 288 )
 scale = Vector2( 2, 2 )
-orientation = 3
+orientation = 0
+
+[node name="player2" parent="platforms/platform2" index="7" instance=ExtResource( 6 )]
+
+position = Vector2( -1.52588e-05, -31.9808 )
+orientation = 1
 
 [node name="platform3" parent="platforms" index="2" instance=ExtResource( 5 )]
 
-position = Vector2( 160, 608.836 )
-rotation = -1.5708
+position = Vector2( 736, 416 )
 scale = Vector2( 2, 2 )
-orientation = 2
+orientation = 0
 
-[node name="platform6" parent="platforms" index="3" instance=ExtResource( 5 )]
+[node name="player3" parent="platforms/platform3" index="7" instance=ExtResource( 6 )]
 
-position = Vector2( 800, 416.038 )
-rotation = -1.5708
+position = Vector2( -1.52588e-05, -31.9808 )
+orientation = 1
+
+[node name="platform4" parent="platforms" index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 416, 288 )
 scale = Vector2( 2, 2 )
-orientation = 2
+orientation = 0
 
 [node name="platform5" parent="platforms" index="4" instance=ExtResource( 5 )]
 
-position = Vector2( 800, 608.836 )
-rotation = 1.5708
+position = Vector2( 544, 416 )
 scale = Vector2( 2, 2 )
-orientation = 3
-
-[node name="player2" parent="platforms/platform5" index="7" instance=ExtResource( 6 )]
-
-position = Vector2( 0, -32.4181 )
-orientation = 1
+orientation = 0
 
 [node name="modulator" type="CanvasModulate" parent="." index="4"]
 

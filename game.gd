@@ -72,15 +72,36 @@ func player_reached_goal(p):
 	if players_done == players.size():
 		emit_signal("on_level_end")
 
+var last_selected
 func switch_players():
 	var one_selected = false
-	for pid in players:
-		var p = players[pid]
-		if p.is_selected:
-			p._on_deselect()
-		elif not one_selected and not p.has_reached_goal:
-			p._on_select()
-			one_selected = true
+	var one_deselected = false
+	
+	if players.size() == 2:
+		for pid in players:
+			var p = players[pid]
+			if p.is_selected:
+				p._on_deselect()
+				one_deselected = true
+			elif (not one_selected and not p.has_reached_goal):
+				p._on_select()
+				one_selected = true
+	elif players.size() > 2:
+		for pid in players:
+			var p = players[pid]
+			if p.is_selected:
+				p._on_deselect()
+				last_selected = p
+				one_deselected = true
+			elif (not one_selected and not p.has_reached_goal) and not last_selected == p:
+				p._on_select()
+				one_selected = true
+				
+		if not one_selected and not one_deselected:
+			if last_selected.is_selected:
+				last_selected._on_deselect()
+			else:
+				last_selected._on_select()
 
 func set_map(t):
 	cur_map = t
@@ -98,6 +119,7 @@ func start_level():
 
 func reset_level():
 	emit_signal("on_level_reset")
+	last_selected = null
 	players_done = 0
 	platforms = {}
 	players = {}
