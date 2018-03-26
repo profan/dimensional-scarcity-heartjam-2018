@@ -388,6 +388,7 @@ func reached_goal():
 	coll.disabled = true
 	front_area.monitoring = false
 	front_area.monitorable = false
+	sprite.frame = 3
 
 func _on_select():
 	Game.select_player(self)
