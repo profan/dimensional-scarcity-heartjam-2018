@@ -75,6 +75,11 @@ func _on_body_exit_left(b):
 			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
 		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
 			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
+	elif b.type() == "player":
+		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
+			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
+		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
+			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
 
 func _on_body_enter_right(b):
 	if b.type() == "player" and (b.get_parent().type() != "platform" or not b.current_side):
@@ -89,6 +94,11 @@ func _on_body_exit_right(b):
 		b.current_side = null
 		b.last_side = "right"
 		print("EXIT RIGHT")
+		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
+			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
+		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
+			b.disconnect("before_player_finished_move", self, "_before_player_finished_moving")
+	elif b.type() == "player":
 		if b.is_connected("player_finished_move", self, "_on_player_finished_moving"):
 			b.disconnect("player_finished_move", self, "_on_player_finished_moving")
 		if b.is_connected("before_player_finished_move", self, "_before_player_finished_moving"):
