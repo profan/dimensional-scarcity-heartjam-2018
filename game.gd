@@ -77,7 +77,7 @@ func switch_players():
 	var one_selected = false
 	var one_deselected = false
 	
-	if players.size() == 2:
+	if players.size() <= 2:
 		for pid in players:
 			var p = players[pid]
 			if p.is_selected:
