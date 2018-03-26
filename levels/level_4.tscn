@@ -8,11 +8,11 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui_canvas.tscn" type="PackedScene" id=7]
 
-[node name="level" type="Node2D" index="0"]
+[node name="level" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-next_level = null
+next_level = "level_5"
 level_title = "Shared Space"
 
 [node name="bg_map" type="TileMap" parent="." index="0"]

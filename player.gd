@@ -231,6 +231,12 @@ func _give_order(o):
 						print("MOVAN RIGHTAN")
 						movement_direction = Order.MOVE_LEFT
 						sprite.frame = 1
+					elif other_platform_infront and other_platform_dir == 1:
+						var p_or = _get_orientation()
+						if other_platform_infront_ref.orientation == p_or:
+							print("MOVAN PLATFORM RIGHTO 1")
+							movement_direction = Order.MOVE_LEFT
+							sprite.frame = 1
 			else:
 				print("TILE RIGHTO")
 				scale.x = 1
@@ -247,7 +253,7 @@ func _give_order(o):
 				elif other_platform_infront and other_platform_dir == 1:
 					var p_or = _get_orientation()
 					if other_platform_infront_ref.orientation == p_or:
-						print("MOVAN PLATFORM RIGHTO")
+						print("MOVAN PLATFORM RIGHTO 2")
 						movement_direction = Order.MOVE_LEFT
 						sprite.frame = 1
 		MOVE_RIGHT:
@@ -281,6 +287,12 @@ func _give_order(o):
 						print("MOVAN LEFTAN")
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
+					elif other_platform_infront  and other_platform_dir == -1:
+						var p_or = _get_orientation()
+						if other_platform_infront_ref.orientation == _get_orientation():
+							print("MOVAN PLATFORM LEFTO 1")
+							movement_direction = Order.MOVE_RIGHT
+							sprite.frame = 1
 			else:
 				print("TILE LEFTO")
 				sprite.frame = 0
@@ -298,7 +310,7 @@ func _give_order(o):
 				elif other_platform_infront  and other_platform_dir == -1:
 					var p_or = _get_orientation()
 					if other_platform_infront_ref.orientation == _get_orientation():
-						print("MOVAN PLATFORM LEFTO")
+						print("MOVAN PLATFORM LEFTO 2")
 						movement_direction = Order.MOVE_RIGHT
 						sprite.frame = 1
 
